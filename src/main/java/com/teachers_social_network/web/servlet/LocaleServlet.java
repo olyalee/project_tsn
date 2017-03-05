@@ -2,6 +2,7 @@ package com.teachers_social_network.web.servlet;
 
 import org.apache.log4j.Logger;
 
+import javax.inject.Singleton;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +15,8 @@ import java.io.IOException;
  * Created by Olya Lee on 03.02.2017.
  */
 
-@WebServlet("/locale")
+@Singleton
+//@WebServlet("/locale")
 public class LocaleServlet extends HttpServlet{
     final static Logger logger = Logger.getLogger(LocaleServlet.class);
 

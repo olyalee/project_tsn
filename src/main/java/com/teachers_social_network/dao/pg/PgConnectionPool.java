@@ -1,5 +1,6 @@
 package com.teachers_social_network.dao.pg;
 
+import com.google.inject.Singleton;
 import com.teachers_social_network.dao.interfaces.ConnectionPool;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.util.concurrent.Executor;
 /**
  * PostgreSQL implementation for ConnectionPool
  */
+@Singleton
 public class PgConnectionPool implements ConnectionPool{
     private final BlockingQueue<Connection> connections;
     private final List<Connection> allConnections;

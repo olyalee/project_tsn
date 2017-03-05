@@ -1,5 +1,6 @@
 package com.teachers_social_network.dao.pg;
 
+import com.google.inject.Singleton;
 import com.teachers_social_network.dao.interfaces.ColleaguesDao;
 import com.teachers_social_network.model.Gender;
 import com.teachers_social_network.model.User;
@@ -15,6 +16,7 @@ import org.apache.log4j.Logger;
 /**
  * PostgreSQL implementation for ColleaguesDao
  */
+@Singleton
 public class PgColleaguesDao implements ColleaguesDao {
     Connection connection;
     final static Logger logger = Logger.getLogger(PgColleaguesDao.class);

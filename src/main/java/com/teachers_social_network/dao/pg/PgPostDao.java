@@ -1,5 +1,6 @@
 package com.teachers_social_network.dao.pg;
 
+import com.google.inject.Singleton;
 import com.teachers_social_network.dao.interfaces.PostDao;
 import com.teachers_social_network.model.Community;
 import com.teachers_social_network.model.Post;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * PostgreSQL implementation for PostDao
  */
+@Singleton
 public class PgPostDao implements PostDao {
     Connection connection;
 

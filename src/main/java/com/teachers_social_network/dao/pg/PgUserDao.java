@@ -1,6 +1,7 @@
 package com.teachers_social_network.dao.pg;
 
 
+import com.google.inject.Singleton;
 import com.teachers_social_network.dao.interfaces.UserDao;
 import com.teachers_social_network.model.Gender;
 import com.teachers_social_network.model.User;
@@ -12,6 +13,7 @@ import java.util.Optional;
 /**
  * PostgreSQL implementation for UserDao
  */
+@Singleton
 public class PgUserDao implements UserDao {
     private Connection connection;
 

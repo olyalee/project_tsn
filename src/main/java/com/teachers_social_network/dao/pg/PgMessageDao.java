@@ -1,5 +1,6 @@
 package com.teachers_social_network.dao.pg;
 
+import com.google.inject.Singleton;
 import com.teachers_social_network.dao.interfaces.MessageDao;
 import com.teachers_social_network.model.Message;
 import org.apache.log4j.Logger;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * PostgreSQL implementation for MessageDao
  */
+@Singleton
 public class PgMessageDao implements MessageDao {
     private Connection connection;
 

@@ -1,9 +1,13 @@
 package com.teachers_social_network.web.servlet;
 
-import com.google.inject.Singleton;
+import javax.inject.Singleton;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by Olya Lee on 08.01.2017.
@@ -17,12 +21,14 @@ public class LoginServlet extends HttpServlet{
 //    public static final String LOGIN = "login";
 //    public static final String PASSWORD = "password";
 //
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request,response);
-//    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request,response);
+    }
 //
-//    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req,resp);
 //       final Credentials credentials = Credentials.builder().login(req.getParameter(LOGIN)).password(req.getParameter(PASSWORD)).build();
 //
 //       final FormValidation validation = validate(credentials);
@@ -40,7 +46,7 @@ public class LoginServlet extends HttpServlet{
 //
 //       if(!validation.isValid()){
 //           req.setAttribute("validtion",validation);
-//           req.getRequestDispatcher("WEB-INF/index.jsp").forward(req,resp);
+//           req.getRequestDispatcher("WEB-INF/login.jsp").forward(req,resp);
 //           return;
 //       }
 //
@@ -61,5 +67,5 @@ public class LoginServlet extends HttpServlet{
 //
 //
 //        return validation;
-//    }
+    }
 }

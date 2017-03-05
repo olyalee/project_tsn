@@ -1,5 +1,6 @@
 package com.teachers_social_network.dao.pg;
 
+import com.google.inject.Singleton;
 import com.teachers_social_network.dao.interfaces.EducationDao;
 import com.teachers_social_network.model.Education;
 import org.apache.log4j.Logger;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * PostgreSQL implementation for EducationDao
  */
+@Singleton
 public class PgEducationDao implements EducationDao {
     Connection connection;
 

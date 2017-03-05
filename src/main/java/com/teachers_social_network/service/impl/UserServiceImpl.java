@@ -1,5 +1,7 @@
 package com.teachers_social_network.service.impl;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.teachers_social_network.dao.interfaces.UserDao;
 import com.teachers_social_network.model.Credentials;
 import com.teachers_social_network.model.Gender;
@@ -21,6 +23,7 @@ public class UserServiceImpl implements UserService {
 
     final static Logger logger = Logger.getLogger(UserServiceImpl.class);
 
+    @Inject
     public UserServiceImpl(UserDao userDao, SecurityService securityService) {
         logger.info("constract UserServiceImpl");
 

@@ -24,7 +24,7 @@
 <div class="container">
 
     <div class="col-md-6 well"><h3><fmt:message bundle="${auto}" key="auto.signin"/></h3>
-        <form id="loginform" class="form-inline" role="form" action="/login" method="post">
+        <form id="loginform" class="form-inline" role="form" action="login" method="post">
             <div
                     <c:choose>
                         <c:when test="${not empty validation.fields.login}">
@@ -34,11 +34,11 @@
                             class="form-group"
                         </c:otherwise>
                     </c:choose>
-                    >
-            <label class="sr-only"><fmt:message bundle="${auto}" key="auto.login"/></label>
-            <input type="text" id="inputLogin" class="form-control"
-                   placeholder="<fmt:message bundle="${auto}" key="auto.login"/>" required
-                   autofocus/>
+            >
+                <label class="sr-only"><fmt:message bundle="${auto}" key="auto.login"/></label>
+                <input type="text" id="inputLogin" class="form-control"
+                       placeholder="<fmt:message bundle="${auto}" key="auto.login"/>" required
+                       autofocus/>
                 <c:if test="${validation.fields.login.emptyField}">
                     <span class="help-block"><fmt:message bundle="${auto}" key="auto.emptyLogin"/></span>
                 </c:if>
@@ -51,9 +51,9 @@
                     class="form-group">
                 </c:otherwise>
             </c:choose>>
-                <label class="sr-only"><fmt:message bundle="${auto}" key="auto.password"/></label>
-                <input type="password" id="inputPassword" class="form-control"
-                       placeholder="<fmt:message bundle="${auto}" key="auto.password"/>" required>
+            <label class="sr-only"><fmt:message bundle="${auto}" key="auto.password"/></label>
+            <input type="password" id="inputPassword" class="form-control"
+                   placeholder="<fmt:message bundle="${auto}" key="auto.password"/>" required>
                 <c:if test="${validation.fields.password.emptyField}">
                     <span class="help-block"><fmt:message bundle="${auto}" key="auto.emptyPassword"/></span>
                 </c:if>
@@ -64,7 +64,7 @@
 
 
     <div class="col-md-6 well"><h3><fmt:message bundle="${auto}" key="auto.register"/></h3>
-        <form id="regform" class="form-inline" role="form" action="/registration" method="post">
+        <form id="regform" class="form-inline" role="form" action="registration" method="post">
             <div class="form-group">
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.login"/></label>
                 <input type="text" id="newLogin" class="form-control"

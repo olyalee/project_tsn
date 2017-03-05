@@ -1,5 +1,6 @@
 package com.teachers_social_network.dao.pg;
 
+import com.google.inject.Singleton;
 import com.teachers_social_network.dao.interfaces.CommunityDao;
 import com.teachers_social_network.model.Community;
 import com.teachers_social_network.model.Gender;
@@ -14,6 +15,7 @@ import java.util.Optional;
 /**
  * PostgreSQL implementation for CommunityDao
  */
+@Singleton
 public class PgCommunityDao implements CommunityDao {
     Connection connection;
 
