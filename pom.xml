@@ -118,6 +118,16 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+            <version>4.1.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -130,25 +140,26 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <url>http://localhost:8080/manager/link</url>
+                    <url>http://localhost:8080/manager/text</url>
                     <server>TomcatServer</server>
                     <path>/${project.build.finalName}</path>
-                    <contextFile>src/main/webapp/WEB-INF/config/app-config.xml</contextFile>
-                    <mode>context</mode>
-                    <charset>UTF-8</charset>
-                    <warDirectory>target/${project.artifactId}-${project.version}</warDirectory>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.3.13.v20161014</version>
-                <configuration>
-                    <stopPort>9966</stopPort>
-                    <stopKey>foo</stopKey>
-                    <stopWait>10</stopWait>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.eclipse.jetty</groupId>-->
+                <!--<artifactId>jetty-maven-plugin</artifactId>-->
+                <!--<version>9.3.13.v20161014</version>-->
+                <!--<configuration>-->
+                    <!--<webApp>-->
+                        <!--<contextPath>/</contextPath>-->
+                        <!--<war>${basedir}/target/tsn.war</war>-->
+                    <!--</webApp>-->
+
+                    <!--<stopPort>9966</stopPort>-->
+                    <!--<stopKey>foo</stopKey>-->
+                    <!--<stopWait>10</stopWait>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

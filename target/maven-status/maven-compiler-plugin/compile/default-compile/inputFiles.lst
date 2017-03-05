@@ -1,11 +1,12 @@
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\model\Message.java
-C:\EPAM\tsn\src\main\java\com\teachers_social_network\web\servlet\Login.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\service\interfaces\SecurityService.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\service\impl\SecurityServiceImpl.java
+C:\EPAM\tsn\src\main\java\com\teachers_social_network\web\servlet\LoginServlet.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\model\User.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\dao\interfaces\PostDao.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\dao\interfaces\ColleaguesDao.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\model\Post.java
+C:\EPAM\tsn\src\main\java\com\teachers_social_network\web\listener\GuiceConfig.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\dao\interfaces\ConnectionPool.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\dao\pg\PgColleaguesDao.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\dao\interfaces\EducationDao.java
@@ -15,14 +16,12 @@ C:\EPAM\tsn\src\main\java\com\teachers_social_network\dao\interfaces\CommunityDa
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\dao\interfaces\UserDao.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\web\filter\LoggedInFilter.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\dao\interfaces\MessageDao.java
-C:\EPAM\tsn\src\main\java\com\teachers_social_network\dao\interfaces\GenericDao.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\model\Education.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\dao\pg\PgConnectionPool.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\service\interfaces\UserService.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\dao\pg\PgEducationDao.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\dao\pg\PgMessageDao.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\model\Credentials.java
-C:\EPAM\tsn\src\main\java\com\teachers_social_network\web\servlet\Locale.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\model\Community.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\service\impl\UserServiceImpl.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\web\servlet\RootServlet.java
@@ -30,4 +29,6 @@ C:\EPAM\tsn\src\main\java\com\teachers_social_network\dao\pg\PgPostDao.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\model\Colleagues.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\model\Gender.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\dao\pg\PgCommunityDao.java
+C:\EPAM\tsn\src\main\java\com\teachers_social_network\web\servlet\LocaleServlet.java
 C:\EPAM\tsn\src\main\java\com\teachers_social_network\web\servlet\model\FieldValidation.java
+C:\EPAM\tsn\src\main\java\com\teachers_social_network\web\servlet\RegistrationServlet.java

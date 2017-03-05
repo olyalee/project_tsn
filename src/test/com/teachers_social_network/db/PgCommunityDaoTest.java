@@ -44,7 +44,7 @@ public class PgCommunityDaoTest {
         }
         Assert.assertTrue(isCreated);
     }
-    
+
     @Test
     public void addMemberTest() throws SQLException, InterruptedException {
         boolean isAdded = false;
@@ -59,7 +59,7 @@ public class PgCommunityDaoTest {
         }
         Assert.assertTrue(isAdded);
     }
-    
+
     @Test
     public void removeMemberTest() throws SQLException, InterruptedException{
         boolean isRemoved = false;
@@ -74,7 +74,7 @@ public class PgCommunityDaoTest {
         }
         Assert.assertTrue(isRemoved);
     }
-    
+
     @Test
     public void checkIsMemberTest() throws InterruptedException, SQLException {
         boolean isMember;
@@ -85,7 +85,7 @@ public class PgCommunityDaoTest {
         }
         Assert.assertTrue(isMember);
     }
-    
+
     @Test
     public void listOfMembersTest() throws InterruptedException, SQLException {
         List<User> members = new ArrayList<>();
@@ -96,7 +96,7 @@ public class PgCommunityDaoTest {
         }
         Assert.assertTrue(!members.isEmpty());
     }
-    
+
     @Test
     public void updateCommTest() throws InterruptedException, SQLException {
         boolean isUpdated;
@@ -107,7 +107,7 @@ public class PgCommunityDaoTest {
         }
         Assert.assertTrue(isUpdated);
     }
-    
+
     @Test
     public void deleteCommTest()  throws SQLException, InterruptedException{
         // TO BE CHANGED!!
@@ -120,7 +120,7 @@ public class PgCommunityDaoTest {
         }
         Assert.assertTrue(isDeleted);
     }
-    
+
 
     @AfterClass
     public static void shutdown(){

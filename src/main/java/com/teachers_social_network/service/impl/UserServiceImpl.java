@@ -6,6 +6,8 @@ import com.teachers_social_network.model.Gender;
 import com.teachers_social_network.model.User;
 import com.teachers_social_network.service.interfaces.SecurityService;
 import com.teachers_social_network.service.interfaces.UserService;
+import com.teachers_social_network.web.servlet.RootServlet;
+import org.apache.log4j.Logger;
 
 import java.sql.Date;
 import java.util.Optional;
@@ -17,13 +19,18 @@ public class UserServiceImpl implements UserService {
     private final UserDao userDao;
     private final SecurityService securityService;
 
+    final static Logger logger = Logger.getLogger(UserServiceImpl.class);
+
     public UserServiceImpl(UserDao userDao, SecurityService securityService) {
+        logger.info("constract UserServiceImpl");
+
         this.userDao = userDao;
         this.securityService = securityService;
     }
 
     @Override
     public Optional<User> addUser(User user) {
+        logger.info("try to add new user");
         //add hash for pass
         User userWishHash = User.builder()
                 .passwordHash(securityService.encrypt(user.getPasswordHash()))
@@ -46,6 +53,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> getByCredentials(Credentials credentials) {
+        logger.info("try to get user by credentials");
         final Optional<User> userOptional = userDao.getByLogin(credentials.getLogin());
 
         if(!userOptional.isPresent()){
