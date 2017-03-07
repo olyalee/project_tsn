@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="realtyx:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="realtyx.war">
-      <element id="artifact" artifact-name="realtyx:war exploded" />
-    </root>
-  </artifact>
-</component>
