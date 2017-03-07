@@ -17,7 +17,7 @@ import com.teachers_social_network.web.servlet.RegistrationServlet;
 import com.teachers_social_network.web.servlet.RootServlet;
 import lombok.extern.java.Log;
 import org.apache.log4j.Logger;
-import javax.inject.Singleton;
+import com.google.inject.Singleton;
 
 import javax.servlet.annotation.WebListener;
 
@@ -32,18 +32,19 @@ public class GuiceConfig extends GuiceServletContextListener {
 
         @Override
         protected void configure() {
-//            logger.info("binding interfaces with implementations");
-//            bind(UserDao.class).to(PgUserDao.class).in(Singleton.class);
-//            bind(EducationDao.class).to(PgEducationDao.class).in(Singleton.class);
-//            bind(CommunityDao.class).to(PgCommunityDao.class).in(Singleton.class);
-//            bind(ColleaguesDao.class).to(PgColleaguesDao.class).in(Singleton.class);
-//            bind(MessageDao.class).to(PgMessageDao.class).in(Singleton.class);
-//            bind(PostDao.class).to(PgPostDao.class).in(Singleton.class);
-//
-//            bind(ConnectionPool.class).to(PgConnectionPool.class).in(Singleton.class);
+            logger.info("binding interfaces with implementations");
 
-//            bind(UserService.class).to(UserServiceImpl.class).in(Singleton.class);
-//            bind(SecurityService.class).to(SecurityServiceImpl.class).in(Singleton.class);
+            bind(ConnectionPool.class).to(PgConnectionPool.class).in(Singleton.class);
+//
+            bind(UserDao.class).to(PgUserDao.class).in(Singleton.class);
+            bind(EducationDao.class).to(PgEducationDao.class).in(Singleton.class);
+            bind(CommunityDao.class).to(PgCommunityDao.class).in(Singleton.class);
+            bind(ColleaguesDao.class).to(PgColleaguesDao.class).in(Singleton.class);
+            bind(MessageDao.class).to(PgMessageDao.class).in(Singleton.class);
+            bind(PostDao.class).to(PgPostDao.class).in(Singleton.class);
+
+            bind(UserService.class).to(UserServiceImpl.class).in(Singleton.class);
+            bind(SecurityService.class).to(SecurityServiceImpl.class).in(Singleton.class);
         }
     }
 

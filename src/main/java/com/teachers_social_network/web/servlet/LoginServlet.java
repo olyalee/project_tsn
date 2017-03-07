@@ -1,5 +1,7 @@
 package com.teachers_social_network.web.servlet;
 
+import org.apache.log4j.Logger;
+
 import javax.inject.Singleton;
 
 import javax.servlet.ServletException;
@@ -15,6 +17,7 @@ import java.io.IOException;
 @Singleton
 //@WebServlet("/login")  //@WebServlet("/jsp")
 public class LoginServlet extends HttpServlet{
+    final static Logger logger = Logger.getLogger(LoginServlet.class);
 
 //    private final UserService userService = new UserServiceImpl(new PgUserDao(new SecurityServiceImpl()),new SecurityServiceImpl());
 //
@@ -23,6 +26,7 @@ public class LoginServlet extends HttpServlet{
 //
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.info("doGet" + request.getParameter("inputLogin"));
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request,response);
     }
 //

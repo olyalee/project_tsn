@@ -64,8 +64,7 @@
 
 
     <div class="col-md-6 well"><h3><fmt:message bundle="${auto}" key="auto.register"/></h3>
-        <form id="regform" class="form-inline" role="form" action="" method="post">
-        <%--<form id="regform" class="form-inline" role="form" action="/registration" method="post">--%>
+        <form id="regform" class="form-inline" role="form" action="registration" method="post">
             <div class="form-group">
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.login"/></label>
                 <input type="text" id="newLogin" class="form-control"

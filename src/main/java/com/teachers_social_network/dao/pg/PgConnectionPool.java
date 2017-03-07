@@ -1,6 +1,5 @@
 package com.teachers_social_network.dao.pg;
 
-import com.google.inject.Singleton;
 import com.teachers_social_network.dao.interfaces.ConnectionPool;
 
 import java.io.IOException;
@@ -14,37 +13,42 @@ import java.util.concurrent.Executor;
 /**
  * PostgreSQL implementation for ConnectionPool
  */
-@Singleton
+
 public class PgConnectionPool implements ConnectionPool{
     private final BlockingQueue<Connection> connections;
     private final List<Connection> allConnections;
+    private static String driver;
+    private static String url;
+    private static String user;
+    private static String password;
+    private static int capacity;
 
-    public PgConnectionPool(Collection<Connection> connections){
-        this.connections = new ArrayBlockingQueue<>(connections.size(),false, connections);
-        allConnections = new ArrayList<>(connections.size());  //  allConnections = new ArrayList<>(connections);
+    public PgConnectionPool(){
 
-        Properties properties = new Properties();
+        final Properties properties = new Properties();
         try(InputStream inputStream = getClass().getClassLoader().getResourceAsStream("db/db.properties")){
             properties.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        String url = properties.getProperty("url");
-        String user = properties.getProperty("user");
-        String password = properties.getProperty("password");
-        int capacity = Integer.parseInt(properties.getProperty("poolsize","5"));
+        driver = properties.getProperty("driver");
+        url = properties.getProperty("url");
+        user = properties.getProperty("user");
+        password = properties.getProperty("password");
+        capacity = Integer.parseInt(properties.getProperty("poolsize","5"));
+
+        this.connections = new ArrayBlockingQueue<>(capacity,false);
+        allConnections = new ArrayList<>(capacity);  //  allConnections = new ArrayList<>(connections);
 
         try{
-            Class.forName(properties.getProperty("driver"));
-            for(int i=0; i<capacity;++i){
+            Class.forName(driver);
+            for(int i=0; i<capacity;i++){
                 Connection connection = DriverManager.getConnection(url,user,password);
                 connections.add(connection);   //added
                 allConnections.add(connection);  //added
             }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }

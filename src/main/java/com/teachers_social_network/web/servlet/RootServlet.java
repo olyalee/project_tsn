@@ -18,20 +18,19 @@ import java.io.IOException;
  */
 @Singleton
 //@WebServlet("")
-@Log
 public class RootServlet extends HttpServlet{
-//    final static Logger logger = Logger.getLogger(RootServlet.class);
+    final static Logger logger = Logger.getLogger(RootServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        log.info("doGet in RootServlet");
+        logger.info("doGet in RootServlet");
         req.getSession(false);
         req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        log.info("doPost in RootServlet");
+        logger.info("doPost in RootServlet");
         req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
 }
