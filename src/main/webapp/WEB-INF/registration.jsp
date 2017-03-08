@@ -27,61 +27,61 @@
         <form id="regform" class="form-inline" role="form" action="/registration" method="post">
             <div class="form-group">
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.login"/></label>
-                <input type="text" id="newLogin" class="form-control"
+                <input type="text" id="newLogin" name="newLogin" class="form-control"
                        placeholder="<fmt:message bundle="${auto}" key="auto.login"/>" required autofocus/>
             </div>
             <div class="form-group">
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.password"/></label>
-                <input type="password" id="newPassword" class="form-control"
+                <input type="password" id="newPassword" name="newPassword" class="form-control"
                        placeholder="<fmt:message bundle="${auto}" key="auto.password"/>" required></div>
             <div class="form-group">
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.firstname"/></label>
-                <input type="text" id="newFirstname" class="form-control"
+                <input type="text" id="newFirstname" name="newFirstname" class="form-control"
                        placeholder="<fmt:message bundle="${auto}" key="auto.firstname"/>" required/>
             </div>
             <div class="form-group">
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.lastname"/></label>
-                <input type="text" id="newLastname" class="form-control"
+                <input type="text" id="newLastname" name="newLastname" class="form-control"
                        placeholder="<fmt:message bundle="${auto}" key="auto.lastname"/>" required/>
             </div>
             <div class="form-group">
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.gender"/></label>
-                <input type="text" id="newGender" class="form-control"
+                <input type="text" id="newGender" name="newGender" class="form-control"
                        placeholder="<fmt:message bundle="${auto}" key="auto.gender"/>" required/>
             </div>
             <div class="form-group">
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.birthdate"/></label>
-                <input type="text" id="newBirthDate" class="form-control"
+                <input type="text" id="newBirthDate" name="newBirthDate" class="form-control"
                        placeholder="<fmt:message bundle="${auto}" key="auto.birthdate"/>" required/>
             </div>
             <div class="form-group">
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.email"/></label>
-                <input type="email" id="newEmail" class="form-control"
+                <input type="email" id="newEmail" name="newEmail" class="form-control"
                        placeholder="<fmt:message bundle="${auto}" key="auto.email"/>" required/>
             </div>
             <div class="form-group">
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.country"/></label>
-                <input type="text" id="newCountry" class="form-control"
+                <input type="text" id="newCountry" name="newCountry" class="form-control"
                        placeholder="<fmt:message bundle="${auto}" key="auto.country"/>" required/>
             </div>
             <div class="form-group">
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.city"/></label>
-                <input type="text" id="newCity" class="form-control"
+                <input type="text" id="newCity" name="newCity" class="form-control"
                        placeholder="<fmt:message bundle="${auto}" key="auto.city"/>" required/>
             </div>
             <div class="form-group">
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.sciencefield"/></label>
-                <input type="text" id="newScienceField" class="form-control"
+                <input type="text" id="newScienceField" name="newScienceField" class="form-control"
                        placeholder="<fmt:message bundle="${auto}" key="auto.sciencefield"/>" required/>
             </div>
             <div class="form-group">
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.place"/></label>
-                <input type="text" id="newPlace" class="form-control"
+                <input type="text" id="newPlace" name="newPlace" class="form-control"
                        placeholder="<fmt:message bundle="${auto}" key="auto.place"/>" required/>
             </div>
             <div class="form-group">
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.position"/></label>
-                <input type="text" id="newPosition" class="form-control"
+                <input type="text" id="newPosition" name="newPosition" class="form-control"
                        placeholder="<fmt:message bundle="${auto}" key="auto.position"/>" required/>
             </div>
             <button type="submit" class="btn btn-success"><fmt:message bundle="${auto}"

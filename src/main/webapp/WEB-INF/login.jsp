@@ -1,5 +1,6 @@
-<%@page contentType="text/html;charset=UTF-8" language="java"%>
+<%@page contentType="text/html;charset=UTF-8" language="java" import="com.teachers_social_network.model.User" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <fmt:setLocale value ="${sessionScope.locale}"/>
 <fmt:setBundle basename="i18n.login" var="loc"/>
 <html>
@@ -24,5 +25,11 @@
                         <fmt:message bundle="${loc}" key="login.log.in" var="log_in"/>
                         <input type ="submit" value="${do_login}"/>
         </form>
+
+    <p>${sessionScope.user.login}</p>
+        <p>${requestScope.get("login")}</p>
+
+        <p>${"login"}</p>
+    <p>bla-bla-bla</p>
     </body>
 </html>

@@ -4,6 +4,7 @@
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="i18n.root" var="root"/>
 <fmt:setBundle basename="i18n.autorization" var="auto"/>
+<fmt:setBundle basename="i18n.login" var="login"/>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +21,7 @@
     <div class="container">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#"><fmt:message bundle="${root}" key="root.home"/></a></li>
+                <li><a href="/TSN"><fmt:message bundle="${root}" key="root.home"/></a></li>
                 <c:url var="profileUrl" value="/jsp/profile"/>
                 <li><a href="${profileUrl}"><fmt:message bundle="${root}" key="root.profile"/></a></li>
                 <c:url var="colleaguesUrl" value="/jsp/colleagues"/>
@@ -32,9 +33,17 @@
 
             </ul>
 
+            <c:if test="${not empty sessionScope.user}">
+                <c:url var="logoutUrl" value="logout"/>
+                <form class="navbar-form navbar-right" action="${logoutUrl}" method="get">
+                    <fmt:message var="btnLogOut" bundle="${login}" key="login.log.out"/>
+                    <button type="submit" class="btn btn-default" title="${btnLogOut}">${btnLogOut}</button>
+                </form>
+            </c:if>
+
             <c:set var="currentUrl"
                    value="${requestScope['javax.servlet.forward.request_uri']}?${pageContext.request.queryString}"/>
-            <c:url var="localeUrl" value="/locale"/>
+            <c:url var="localeUrl" value="locale"/>
             <form class="navbar-form navbar-right" action="${localeUrl}" method="post">
                 <input type="hidden" name="locale" value="en"/>
                 <input type="hidden" name="redirect_to" value="${currentUrl}"/>
@@ -43,7 +52,7 @@
                     <button type="submit" class="btn flag-icon flag-icon-us" title="${enTitle}"></button>
                 </div>
             </form>
-            <c:url var="localeUrl" value="/locale"/>
+            <c:url var="localeUrl" value="locale"/>
             <form class="navbar-form navbar-right" action="${localeUrl}" method="post">
                 <input type="hidden" name="locale" value="ru"/>
                 <input type="hidden" name="redirect_to" value="${currentUrl}"/>

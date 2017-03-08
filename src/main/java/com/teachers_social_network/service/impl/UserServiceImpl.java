@@ -60,12 +60,14 @@ public class UserServiceImpl implements UserService {
         final Optional<User> userOptional = userDao.getByLogin(credentials.getLogin());
 
         if(!userOptional.isPresent()){
+            logger.info("there is no such user");
             return Optional.empty();
         }
 
         final User user = userOptional.get();
 
         if(!securityService.validate(credentials.getPassword(),user.getPasswordHash())){
+            logger.info("validation was failed");
             return Optional.empty();
         }
 

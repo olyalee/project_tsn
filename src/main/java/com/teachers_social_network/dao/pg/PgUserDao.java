@@ -1,7 +1,6 @@
 package com.teachers_social_network.dao.pg;
 
 
-import com.google.inject.Singleton;
 import com.teachers_social_network.dao.interfaces.ConnectionPool;
 import com.teachers_social_network.dao.interfaces.UserDao;
 import com.teachers_social_network.model.Gender;

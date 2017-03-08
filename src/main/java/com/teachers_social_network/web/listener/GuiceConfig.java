@@ -5,16 +5,14 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
+import com.teachers_social_network.dao.DummyUserDao;
 import com.teachers_social_network.dao.interfaces.*;
 import com.teachers_social_network.dao.pg.*;
 import com.teachers_social_network.service.impl.SecurityServiceImpl;
 import com.teachers_social_network.service.impl.UserServiceImpl;
 import com.teachers_social_network.service.interfaces.SecurityService;
 import com.teachers_social_network.service.interfaces.UserService;
-import com.teachers_social_network.web.servlet.LocaleServlet;
-import com.teachers_social_network.web.servlet.LoginServlet;
-import com.teachers_social_network.web.servlet.RegistrationServlet;
-import com.teachers_social_network.web.servlet.RootServlet;
+import com.teachers_social_network.web.servlet.*;
 import lombok.extern.java.Log;
 import org.apache.log4j.Logger;
 import com.google.inject.Singleton;
@@ -35,8 +33,8 @@ public class GuiceConfig extends GuiceServletContextListener {
             logger.info("binding interfaces with implementations");
 
             bind(ConnectionPool.class).to(PgConnectionPool.class).in(Singleton.class);
-//
-            bind(UserDao.class).to(PgUserDao.class).in(Singleton.class);
+
+            bind(UserDao.class).to(DummyUserDao.class).in(Singleton.class); //bind(UserDao.class).to(PgUserDao.class).in(Singleton.class);
             bind(EducationDao.class).to(PgEducationDao.class).in(Singleton.class);
             bind(CommunityDao.class).to(PgCommunityDao.class).in(Singleton.class);
             bind(ColleaguesDao.class).to(PgColleaguesDao.class).in(Singleton.class);
@@ -54,9 +52,12 @@ public class GuiceConfig extends GuiceServletContextListener {
             logger.info("configurations paths with servlets");
 
             serve("/").with(RootServlet.class);
-//            serve("/registration").with(RegistrationServlet.class);
+            serve("/registration").with(RegistrationServlet.class);
             serve("/login").with(LoginServlet.class);
+            serve("/logout").with(LogoutServlet.class);
             serve("/locale").with(LocaleServlet.class);
+            serve("/profile").with(ProfileServlet.class);
+//            serve("/jsp/profile").with(ProfileServlet.class);
         }
     }
 

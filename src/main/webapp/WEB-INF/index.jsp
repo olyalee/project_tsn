@@ -36,7 +36,7 @@
                     </c:choose>
             >
                 <label class="sr-only"><fmt:message bundle="${auto}" key="auto.login"/></label>
-                <input type="text" id="inputLogin" class="form-control"
+                <input type="text" id="inputLogin" name="inputLogin" class="form-control"
                        placeholder="<fmt:message bundle="${auto}" key="auto.login"/>" required
                        autofocus/>
                 <c:if test="${validation.fields.login.emptyField}">
@@ -52,7 +52,7 @@
                 </c:otherwise>
             </c:choose>>
             <label class="sr-only"><fmt:message bundle="${auto}" key="auto.password"/></label>
-            <input type="password" id="inputPassword" class="form-control"
+            <input type="password" id="inputPassword" name="inputPassword" class="form-control"
                    placeholder="<fmt:message bundle="${auto}" key="auto.password"/>" required>
                 <c:if test="${validation.fields.password.emptyField}">
                     <span class="help-block"><fmt:message bundle="${auto}" key="auto.emptyPassword"/></span>
