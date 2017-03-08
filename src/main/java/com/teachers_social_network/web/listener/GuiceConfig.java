@@ -34,7 +34,7 @@ public class GuiceConfig extends GuiceServletContextListener {
 
             bind(ConnectionPool.class).to(PgConnectionPool.class).in(Singleton.class);
 
-            bind(UserDao.class).to(DummyUserDao.class).in(Singleton.class); //bind(UserDao.class).to(PgUserDao.class).in(Singleton.class);
+            bind(UserDao.class).to(PgUserDao.class).in(Singleton.class); //bind(UserDao.class).to(DummyUserDao.class).in(Singleton.class); //
             bind(EducationDao.class).to(PgEducationDao.class).in(Singleton.class);
             bind(CommunityDao.class).to(PgCommunityDao.class).in(Singleton.class);
             bind(ColleaguesDao.class).to(PgColleaguesDao.class).in(Singleton.class);

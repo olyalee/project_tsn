@@ -12,17 +12,18 @@ import org.apache.log4j.Logger;
 
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 /**
- * Created by Olya Lee on 22.02.2017.
+ *
  */
 @Singleton
 //@WebServlet("/registration")
@@ -49,14 +50,24 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("doPost from " + req.getParameter(LOGIN));
-       final Credentials credentials = Credentials.builder().login(req.getParameter(LOGIN)).password(req.getParameter(PASSWORD)).build();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Date birthDate;
+        try {
+            birthDate = new Date((dateFormat.parse(req.getParameter("newBirthDate"))).getTime()); //(Date) dateFormat.parse((req.getParameter("newBirthDate")));
+        } catch (ParseException e) {
+            logger.error("couldn't parse birthdate");
+            birthDate = null;
+        }
+
+
+        final Credentials credentials = Credentials.builder().login(req.getParameter(LOGIN)).password(req.getParameter(PASSWORD)).build();
        final User newUser = User.builder()
                .login(req.getParameter(LOGIN))
                .passwordHash(req.getParameter(PASSWORD))
                .firstName(req.getParameter("newFirstname"))
                .lastName(req.getParameter("newLastname"))
                .gender(Gender.valueOf((req.getParameter("newGender")).toUpperCase()))
-               .birthDate(Date.valueOf(req.getParameter("newBirthDate")))
+               .birthDate(birthDate)                                            //(Date.valueOf(req.getParameter("newBirthDate")))
                .email(req.getParameter("newEmail"))
                .country(req.getParameter("newCountry"))
                .city(req.getParameter("newCity"))
@@ -73,14 +84,17 @@ public class RegistrationServlet extends HttpServlet {
                //add new user
                Optional<User> addedUser = userService.addUser(newUser);
                if(addedUser.isPresent()){
+                   logger.info("User was added");
                    final HttpSession session = req.getSession(true);
-                   session.setAttribute("user",user.get());
+                   session.setAttribute("user", newUser); //session.setAttribute("user",user.get());
                }
                else{
                    //couldn't add new user
+                   logger.info("couldn't add new user");
                }
            }else{
                //user with such login is already exist
+               logger.info("couldn't add new user - user with such login is already exist");
                validation.getErrors().put("INVALID_CREDENTIALS", true);
            }
        }
