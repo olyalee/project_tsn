@@ -12,4 +12,6 @@ import java.util.Optional;
 public interface UserService {
     Optional<User> addUser(User user);
     Optional<User> getByCredentials(Credentials credentials);
+
+    User getByLogin(String login);
 }

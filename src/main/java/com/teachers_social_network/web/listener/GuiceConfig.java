@@ -8,8 +8,10 @@ import com.google.inject.servlet.ServletModule;
 import com.teachers_social_network.dao.DummyUserDao;
 import com.teachers_social_network.dao.interfaces.*;
 import com.teachers_social_network.dao.pg.*;
+import com.teachers_social_network.service.impl.ProfileServiceImpl;
 import com.teachers_social_network.service.impl.SecurityServiceImpl;
 import com.teachers_social_network.service.impl.UserServiceImpl;
+import com.teachers_social_network.service.interfaces.ProfileService;
 import com.teachers_social_network.service.interfaces.SecurityService;
 import com.teachers_social_network.service.interfaces.UserService;
 import com.teachers_social_network.web.servlet.*;
@@ -43,6 +45,7 @@ public class GuiceConfig extends GuiceServletContextListener {
 
             bind(UserService.class).to(UserServiceImpl.class).in(Singleton.class);
             bind(SecurityService.class).to(SecurityServiceImpl.class).in(Singleton.class);
+            bind(ProfileService.class).to(ProfileServiceImpl.class).in(Singleton.class);
         }
     }
 
@@ -57,7 +60,6 @@ public class GuiceConfig extends GuiceServletContextListener {
             serve("/logout").with(LogoutServlet.class);
             serve("/locale").with(LocaleServlet.class);
             serve("/profile").with(ProfileServlet.class);
-//            serve("/jsp/profile").with(ProfileServlet.class);
         }
     }
 
@@ -66,5 +68,4 @@ public class GuiceConfig extends GuiceServletContextListener {
         logger.info("create injector");
         return Guice.createInjector(new DependencyModule(), new ServletConfigModule());
     }
-
 }

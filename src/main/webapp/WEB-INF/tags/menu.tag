@@ -22,7 +22,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="/TSN"><fmt:message bundle="${root}" key="root.home"/></a></li>
-                <c:url var="profileUrl" value="/jsp/profile"/>
+                <c:url var="profileUrl" value="profile"/>
                 <li><a href="${profileUrl}"><fmt:message bundle="${root}" key="root.profile"/></a></li>
                 <c:url var="colleaguesUrl" value="/jsp/colleagues"/>
                 <li><a href="${colleaguesUrl}"><fmt:message bundle="${root}" key="root.colleagues"/></a></li>

@@ -73,4 +73,9 @@ public class UserServiceImpl implements UserService {
 
         return Optional.of(user);
     }
+
+    @Override
+    public User getByLogin(String login) {
+        return userDao.getByLogin(login).get();
+    }
 }
