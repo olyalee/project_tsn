@@ -92,7 +92,7 @@ public class PgColleaguesDao implements ColleaguesDao {
     @Override
     public List<User> listOfColleagues(String user_login) {
         List<User> colleagues = new ArrayList<>();
-        String sql = "SELECT * FROM public.users LEFT JOIN public.colleagues ON users.login = colleagues.colleague_login WHERE users.login = ?;";
+        String sql = "SELECT * FROM public.users LEFT JOIN public.colleagues ON users.login = colleagues.colleague_login WHERE colleagues.login = ?;";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, user_login);

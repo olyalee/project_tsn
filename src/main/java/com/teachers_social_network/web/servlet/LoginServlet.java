@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.info("doGet" + request.getParameter("inputLogin"));
-        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request,response);
     }
 //
     @Override
@@ -54,24 +54,30 @@ public class LoginServlet extends HttpServlet{
        final FormValidation validation = validate(credentials);
 
        if(validation.isValid()){
+
            final Optional<User> user = userService.getByCredentials(credentials);
 
            if(!user.isPresent()){
                validation.getErrors().put("INVALID_CREDENTIALS", true);
+               req.getRequestDispatcher("WEB-INF/index.jsp").forward(req,resp);
            }else{
                final HttpSession session = req.getSession(true);
                session.setAttribute("user",user.get());
                req.setAttribute("login",user.get().getLogin());
+               req.getRequestDispatcher("WEB-INF/jsp/welcome.jsp").forward(req,resp);
            }
-       }
-
-       if(!validation.isValid()){
+       }else{
            req.setAttribute("validtion",validation);
-           req.getRequestDispatcher("WEB-INF/login.jsp").forward(req,resp);
-           return;
+           req.getRequestDispatcher("WEB-INF/index.jsp").forward(req,resp);
        }
 
-        resp.sendRedirect(req.getContextPath());
+//       if(!validation.isValid()){
+//           req.setAttribute("validtion",validation);
+//           req.getRequestDispatcher("WEB-INF/index.jsp").forward(req,resp);
+//           return;
+//       }
+
+//        resp.sendRedirect(req.getContextPath());
     }
 
     static FormValidation validate(Credentials credentials) {

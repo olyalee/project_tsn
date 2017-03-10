@@ -24,7 +24,7 @@ public class RootServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("doGet in RootServlet");
-        req.getSession(false);
+//        req.getSession(false);
         req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
 

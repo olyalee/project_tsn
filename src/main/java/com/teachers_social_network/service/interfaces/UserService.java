@@ -1,8 +1,10 @@
 package com.teachers_social_network.service.interfaces;
 
 import com.teachers_social_network.model.Credentials;
+import com.teachers_social_network.model.Education;
 import com.teachers_social_network.model.User;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -14,4 +16,6 @@ public interface UserService {
     Optional<User> getByCredentials(Credentials credentials);
 
     User getByLogin(String login);
+
+    List<Education> getEducationByLogin(String login);
 }

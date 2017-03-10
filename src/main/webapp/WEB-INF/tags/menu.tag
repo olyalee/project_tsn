@@ -24,7 +24,7 @@
                 <li><a href="/TSN"><fmt:message bundle="${root}" key="root.home"/></a></li>
                 <c:url var="profileUrl" value="profile"/>
                 <li><a href="${profileUrl}"><fmt:message bundle="${root}" key="root.profile"/></a></li>
-                <c:url var="colleaguesUrl" value="/jsp/colleagues"/>
+                <c:url var="colleaguesUrl" value="colleagues"/>
                 <li><a href="${colleaguesUrl}"><fmt:message bundle="${root}" key="root.colleagues"/></a></li>
                 <c:url var="communitiesUrl" value="/jsp/communities"/>
                 <li><a href="${communitiesUrl}"><fmt:message bundle="${root}" key="root.communities"/></a></li>

@@ -2,8 +2,10 @@ package com.teachers_social_network.service.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.teachers_social_network.dao.interfaces.EducationDao;
 import com.teachers_social_network.dao.interfaces.UserDao;
 import com.teachers_social_network.model.Credentials;
+import com.teachers_social_network.model.Education;
 import com.teachers_social_network.model.Gender;
 import com.teachers_social_network.model.User;
 import com.teachers_social_network.service.interfaces.SecurityService;
@@ -12,6 +14,7 @@ import com.teachers_social_network.web.servlet.RootServlet;
 import org.apache.log4j.Logger;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -19,15 +22,18 @@ import java.util.Optional;
  */
 public class UserServiceImpl implements UserService {
     private final UserDao userDao;
+    private final EducationDao educationDao;
     private final SecurityService securityService;
 
     final static Logger logger = Logger.getLogger(UserServiceImpl.class);
 
     @Inject
-    public UserServiceImpl(UserDao userDao, SecurityService securityService) {
+    public UserServiceImpl(UserDao userDao, EducationDao educationDao, SecurityService securityService) {
+
         logger.info("constract UserServiceImpl");
 
         this.userDao = userDao;
+        this.educationDao = educationDao;
         this.securityService = securityService;
     }
 
@@ -77,5 +83,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getByLogin(String login) {
         return userDao.getByLogin(login).get();
+    }
+
+    @Override
+    public List<Education> getEducationByLogin(String login) {
+        List<Education> educations = educationDao.getByLogin(login);
+        return educations;
     }
 }
