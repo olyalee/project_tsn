@@ -26,6 +26,7 @@ public class LoggedInFilter implements Filter {
             final boolean isLoggedIn = session != null && session.getAttribute("user") != null;
 
             final String loginPage = request.getContextPath()+"/";
+//            final String loginPage = "/TSN";
 
             if(!isLoggedIn){
 

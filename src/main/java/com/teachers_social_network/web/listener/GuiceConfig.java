@@ -7,12 +7,8 @@ import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
 import com.teachers_social_network.dao.interfaces.*;
 import com.teachers_social_network.dao.pg.*;
-import com.teachers_social_network.service.impl.ColleagueServiceImpl;
-import com.teachers_social_network.service.impl.SecurityServiceImpl;
-import com.teachers_social_network.service.impl.UserServiceImpl;
-import com.teachers_social_network.service.interfaces.ColleagueService;
-import com.teachers_social_network.service.interfaces.SecurityService;
-import com.teachers_social_network.service.interfaces.UserService;
+import com.teachers_social_network.service.impl.*;
+import com.teachers_social_network.service.interfaces.*;
 import com.teachers_social_network.web.servlet.*;
 import org.apache.log4j.Logger;
 import com.google.inject.Singleton;
@@ -30,7 +26,7 @@ public class GuiceConfig extends GuiceServletContextListener {
 
         @Override
         protected void configure() {
-            logger.info("binding interfaces with implementations");
+//            logger.info("binding interfaces with implementations");
 
             bind(ConnectionPool.class).to(PgConnectionPool.class).in(Singleton.class);
 
@@ -44,14 +40,15 @@ public class GuiceConfig extends GuiceServletContextListener {
             bind(UserService.class).to(UserServiceImpl.class).in(Singleton.class);
             bind(SecurityService.class).to(SecurityServiceImpl.class).in(Singleton.class);
             bind(ColleagueService.class).to(ColleagueServiceImpl.class).in(Singleton.class);
-//            bind(ProfileService.class).to(ProfileServiceImpl.class).in(Singleton.class);
+            bind(CommunityService.class).to(CommunityServiceImpl.class).in(Singleton.class);
+            bind(MessageService.class).to(MessageServiceImpl.class).in(Singleton.class);
         }
     }
 
     private static class ServletConfigModule extends ServletModule {
         @Override
         protected void configureServlets(){
-            logger.info("configurations paths with servlets");
+//            logger.info("configurations paths with servlets");
 
             serve("/").with(RootServlet.class);
             serve("/registration").with(RegistrationServlet.class);
@@ -60,6 +57,8 @@ public class GuiceConfig extends GuiceServletContextListener {
             serve("/locale").with(LocaleServlet.class);
             serve("/profile").with(ProfileServlet.class);
             serve("/colleagues").with(ColleaguesServlet.class);
+            serve("/communities").with(CommunitiesServlet.class);
+            serve("/messages").with(MessagesServlet.class);
         }
     }
 

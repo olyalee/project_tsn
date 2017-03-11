@@ -39,9 +39,6 @@
             </ul>
         </div>
     </div>
-    <div class="row">
-        <div class=""
-    </div>
 </div>
 </body>
 </html>

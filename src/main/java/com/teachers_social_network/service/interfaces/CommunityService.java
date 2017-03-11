@@ -1,16 +1,15 @@
-package com.teachers_social_network.dao.interfaces;
+package com.teachers_social_network.service.interfaces;
 
 import com.teachers_social_network.model.Community;
-import com.teachers_social_network.model.Post;
 import com.teachers_social_network.model.User;
 
 import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by Olya Lee on 11.02.2017.
+ * Created by Olya Lee on 10.03.2017.
  */
-public interface CommunityDao {
+public interface CommunityService {
     /**add new community to the DB*/
     boolean create(Community community);
 
@@ -38,6 +37,5 @@ public interface CommunityDao {
     /**delete community from DB*/
     boolean delete(Community community);
 
-    /**return all communities where user is member*/
-    List<Community> communitiesForUser(String login);
+    public List<Community> communitiesForUser(String login);
 }

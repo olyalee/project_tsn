@@ -63,9 +63,7 @@ public class PgCommunityDao implements CommunityDao {
                     }
                 }
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return false;
@@ -89,9 +87,7 @@ public class PgCommunityDao implements CommunityDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query " + id, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return Optional.empty();
@@ -115,9 +111,7 @@ public class PgCommunityDao implements CommunityDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query " + title, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return Optional.empty();
@@ -135,9 +129,7 @@ public class PgCommunityDao implements CommunityDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - adding member " + login, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return false;
@@ -155,9 +147,7 @@ public class PgCommunityDao implements CommunityDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - removing member" + login, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return false;
@@ -189,9 +179,7 @@ public class PgCommunityDao implements CommunityDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - get members from " + community.getTitle(), e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return members;
@@ -209,9 +197,7 @@ public class PgCommunityDao implements CommunityDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query " + community.getTitle() + " " + login, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return false;
@@ -229,9 +215,7 @@ public class PgCommunityDao implements CommunityDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - update community " + community.getTitle(), e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return false;
@@ -248,11 +232,30 @@ public class PgCommunityDao implements CommunityDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - delete community" + community.getTitle(), e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return false;
+    }
+
+    @Override
+    public List<Community> communitiesForUser(String login) {
+        List<Community> communities = new ArrayList<>();
+        String sql = "SELECT * FROM public.communities JOIN public.community_members ON communities.community_id = community_members.community_id WHERE community_members.login = ?";
+        try (Connection connection = connectionPool.getConnection()){
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,login);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Community community = Community.builder()
+                        .id(rs.getInt("community_id"))
+                        .title(rs.getString("title"))
+                        .build();
+                communities.add(community);
+            }
+        } catch (InterruptedException | SQLException e) {
+            logger.error("Couldn't get connection ", e);
+        }
+        return communities;
     }
 }

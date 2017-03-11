@@ -14,7 +14,7 @@ import java.util.concurrent.Executor;
  * PostgreSQL implementation for ConnectionPool
  */
 
-public class PgConnectionPool implements ConnectionPool{
+public class PgConnectionPool implements ConnectionPool {
     private final BlockingQueue<Connection> connections;
     private final List<Connection> allConnections;
     private static String driver;
@@ -23,10 +23,10 @@ public class PgConnectionPool implements ConnectionPool{
     private static String password;
     private static int capacity;
 
-    public PgConnectionPool(){
+    public PgConnectionPool() {
 
         final Properties properties = new Properties();
-        try(InputStream inputStream = getClass().getClassLoader().getResourceAsStream("db/db.properties")){
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("db/db.properties")) {
             properties.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,15 +36,15 @@ public class PgConnectionPool implements ConnectionPool{
         url = properties.getProperty("url");
         user = properties.getProperty("user");
         password = properties.getProperty("password");
-        capacity = Integer.parseInt(properties.getProperty("poolsize","5"));
+        capacity = Integer.parseInt(properties.getProperty("poolsize", "5"));
 
-        this.connections = new ArrayBlockingQueue<>(capacity,false);
+        this.connections = new ArrayBlockingQueue<>(capacity, false);
         allConnections = new ArrayList<>(capacity);  //  allConnections = new ArrayList<>(connections);
 
-        try{
+        try {
             Class.forName(driver);
-            for(int i=0; i<capacity;i++){
-                Connection connection = DriverManager.getConnection(url,user,password);
+            for (int i = 0; i < capacity; i++) {
+                final Connection connection = DriverManager.getConnection(url, user, password);
                 connections.add(connection);   //added
                 allConnections.add(connection);  //added
             }
@@ -58,18 +58,18 @@ public class PgConnectionPool implements ConnectionPool{
         return new PooledConnection(connections.take());
     }
 
-    private void returnConnection(Connection connection){
+    private void returnConnection(Connection connection) {
         connections.add(connection);
     }
 
     @Override
     public void close() throws Exception {
-        for(Connection connection : allConnections) {
+        for (Connection connection : allConnections) {
             connection.close();
         }
     }
 
-    private class PooledConnection implements Connection{
+    private class PooledConnection implements Connection {
         private final Connection inner;
         private boolean isClosed = false;
 
@@ -80,7 +80,8 @@ public class PgConnectionPool implements ConnectionPool{
 
         @Override
         public void close() throws SQLException {
-            inner.setAutoCommit(false);
+//            inner.setAutoCommit(false);
+            inner.setAutoCommit(true);
             inner.setReadOnly(false);
             inner.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
             inner.clearWarnings();

@@ -14,7 +14,7 @@
     <tags:menu title="${title}"/>
 </head>
 <body>
-<fmt:message var="logout" bundle="${login}" key="root.error.text"/>
-<div align="center"> ${logout}</div>
+<fmt:message var="error" bundle="${root}" key="root.error.text"/>
+<div align="center"> ${error}</div>
 </body>
 </html>

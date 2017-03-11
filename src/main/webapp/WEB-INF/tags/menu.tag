@@ -26,9 +26,10 @@
                 <li><a href="${profileUrl}"><fmt:message bundle="${root}" key="root.profile"/></a></li>
                 <c:url var="colleaguesUrl" value="colleagues"/>
                 <li><a href="${colleaguesUrl}"><fmt:message bundle="${root}" key="root.colleagues"/></a></li>
-                <c:url var="communitiesUrl" value="/jsp/communities"/>
+                <c:url var="communitiesUrl" value="communities"/>
                 <li><a href="${communitiesUrl}"><fmt:message bundle="${root}" key="root.communities"/></a></li>
-                <c:url var="messagesUrl" value="/jsp/messages"/>
+                <%--<c:url var="messagesUrl" value="/jsp/messages"/>--%>
+                <c:url var="messagesUrl" value="messages"/>
                 <li><a href="${messagesUrl}"><fmt:message bundle="${root}" key="root.messages"/></a></li>
 
             </ul>
