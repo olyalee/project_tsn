@@ -47,4 +47,34 @@ public class ColleaguesServlet extends HttpServlet {
 
         req.getRequestDispatcher("/WEB-INF/jsp/colleagues.jsp").forward(req,resp);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        final HttpSession session = req.getSession(false);
+        final User user = (User) session.getAttribute("user");
+        String login = user.getLogin();
+
+        if(req.getParameter("addColleague")!=null){
+            if(colleagueService.addColleague(login,req.getParameter("colleagueToAdd"))){
+                req.setAttribute("wasAdded",true);
+            }else{
+                req.setAttribute("wasAdded", false);
+            }
+        }
+
+        if(req.getParameter("removeColleague")!=null){
+            if(colleagueService.removeColleague(login,req.getParameter("colleagueToRemove"))){
+                req.setAttribute("wasRemoved",true);
+            }else{
+                req.setAttribute("wasRemoved", false);
+            }
+        }
+
+        List<User> colleagues = colleagueService.listOfColleagues(login);
+        session.setAttribute("colleaguesList",colleagues);
+
+        req.getRequestDispatcher("/WEB-INF/jsp/colleagues.jsp").forward(req,resp);
+    }
+
+
 }
