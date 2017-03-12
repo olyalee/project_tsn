@@ -20,10 +20,7 @@
         <div class="alert alert-danger"><fmt:message bundle="${auto}" key="auto.error.login"/></div>
     </c:if>
 </div>
-
-
 <div class="container">
-
     <div class="col-md-6 well"><h3><fmt:message bundle="${auto}" key="auto.signin"/></h3>
         <form id="loginform" class="form-inline" role="form" action="login" method="post">
             <div
@@ -130,6 +127,5 @@
         </form>
     </div>
 </div>
-<!-- /container -->
 </body>
 </html>

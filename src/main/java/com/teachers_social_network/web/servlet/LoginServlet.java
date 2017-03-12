@@ -25,7 +25,7 @@ import java.util.Optional;
  */
 @Singleton
 //@WebServlet("/login")  //@WebServlet("/jsp")
-public class LoginServlet extends HttpServlet{
+public class LoginServlet extends HttpServlet {
     final static Logger logger = Logger.getLogger(LoginServlet.class);
 
     private final UserService userService;
@@ -34,42 +34,44 @@ public class LoginServlet extends HttpServlet{
     public static final String PASSWORD = "inputPassword";
 
     @Inject
-    public LoginServlet(UserService userService){
+    public LoginServlet(UserService userService) {
         this.userService = userService;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.info("doGet" + request.getParameter("inputLogin"));
-        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }
-//
+
+    //
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req,resp);
+        req.setCharacterEncoding("UTF-8");
 
-       final Credentials credentials = Credentials.builder().login(req.getParameter(LOGIN)).password(req.getParameter(PASSWORD)).build();
+        final Credentials credentials = Credentials.builder().login(req.getParameter(LOGIN)).password(req.getParameter(PASSWORD)).build();
         logger.info("doPost " + req.getParameter(LOGIN) + " " + req.getParameter(PASSWORD));
 
-       final FormValidation validation = validate(credentials);
+        final FormValidation validation = validate(credentials);
 
-       if(validation.isValid()){
+        if (validation.isValid()) {
 
-           final Optional<User> user = userService.getByCredentials(credentials);
+            final Optional<User> user = userService.getByCredentials(credentials);
 
-           if(!user.isPresent()){
-               validation.getErrors().put("INVALID_CREDENTIALS", true);
-               req.getRequestDispatcher("WEB-INF/index.jsp").forward(req,resp);
-           }else{
-               final HttpSession session = req.getSession(true);
-               session.setAttribute("user",user.get());
-               req.setAttribute("login",user.get().getLogin());
-               req.getRequestDispatcher("WEB-INF/jsp/welcome.jsp").forward(req,resp);
-           }
-       }else{
-           req.setAttribute("validtion",validation);
-           req.getRequestDispatcher("WEB-INF/index.jsp").forward(req,resp);
-       }
+            if (!user.isPresent()) {
+                validation.getErrors().put("INVALID_CREDENTIALS", true);
+                req.getRequestDispatcher("WEB-INF/index.jsp").forward(req, resp);
+            } else {
+                final HttpSession session = req.getSession(true);
+                session.setAttribute("user", user.get());
+                req.setAttribute("login", user.get().getLogin());
+                req.getRequestDispatcher("WEB-INF/jsp/welcome.jsp").forward(req, resp);
+            }
+        } else {
+            req.setAttribute("validtion", validation);
+            req.getRequestDispatcher("WEB-INF/index.jsp").forward(req, resp);
+        }
 
 //       if(!validation.isValid()){
 //           req.setAttribute("validtion",validation);
@@ -83,11 +85,11 @@ public class LoginServlet extends HttpServlet{
     static FormValidation validate(Credentials credentials) {
         final FormValidation validation = new FormValidation();
 
-        if(credentials.getLogin()==null || credentials.getLogin().isEmpty()){
+        if (credentials.getLogin() == null || credentials.getLogin().isEmpty()) {
             validation.getFields().put(LOGIN, FieldValidation.builder().isEmptyField(true).build());
         }
 
-        if(credentials.getPassword()==null || credentials.getPassword().isEmpty()){
+        if (credentials.getPassword() == null || credentials.getPassword().isEmpty()) {
             validation.getFields().put(PASSWORD, FieldValidation.builder().isEmptyField(true).build());
         }
 

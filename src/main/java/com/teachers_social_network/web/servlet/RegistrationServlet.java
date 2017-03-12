@@ -1,7 +1,9 @@
 package com.teachers_social_network.web.servlet;
 
 import com.google.inject.Inject;
+
 import javax.inject.Singleton;
+
 import com.teachers_social_network.model.Credentials;
 import com.teachers_social_network.model.Gender;
 import com.teachers_social_network.model.User;
@@ -36,7 +38,7 @@ public class RegistrationServlet extends HttpServlet {
     public static final String PASSWORD = "newPassword";  //password
 
     @Inject
-    public RegistrationServlet(UserService userService){
+    public RegistrationServlet(UserService userService) {
         this.userService = userService;
         logger.info("userService was injected");
     }
@@ -44,11 +46,12 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.info("doGet from " + request.getParameter(LOGIN));
-        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         logger.info("doPost from " + req.getParameter(LOGIN));
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         Date birthDate;
@@ -61,49 +64,48 @@ public class RegistrationServlet extends HttpServlet {
 
 
         final Credentials credentials = Credentials.builder().login(req.getParameter(LOGIN)).password(req.getParameter(PASSWORD)).build();
-       final User newUser = User.builder()
-               .login(req.getParameter(LOGIN))
-               .passwordHash(req.getParameter(PASSWORD))
-               .firstName(req.getParameter("newFirstname"))
-               .lastName(req.getParameter("newLastname"))
-               .gender(Gender.valueOf((req.getParameter("newGender")).toUpperCase()))
-               .birthDate(birthDate)                                            //(Date.valueOf(req.getParameter("newBirthDate")))
-               .email(req.getParameter("newEmail"))
-               .country(req.getParameter("newCountry"))
-               .city(req.getParameter("newCity"))
-               .science_field(req.getParameter("newScienceField"))
-               .working_place(req.getParameter("newPlace"))
-               .position(req.getParameter("newPosition")).build();
+        final User newUser = User.builder()
+                .login(req.getParameter(LOGIN))
+                .passwordHash(req.getParameter(PASSWORD))
+                .firstName(req.getParameter("newFirstname"))
+                .lastName(req.getParameter("newLastname"))
+                .gender(Gender.valueOf((req.getParameter("newGender")).toUpperCase()))
+                .birthDate(birthDate)                                            //(Date.valueOf(req.getParameter("newBirthDate")))
+                .email(req.getParameter("newEmail"))
+                .country(req.getParameter("newCountry"))
+                .city(req.getParameter("newCity"))
+                .science_field(req.getParameter("newScienceField"))
+                .working_place(req.getParameter("newPlace"))
+                .position(req.getParameter("newPosition")).build();
 
-       final FormValidation validation = validate(credentials);
+        final FormValidation validation = validate(credentials);
 
-       if(validation.isValid()){
-           final Optional<User> user = userService.getByCredentials(credentials);
+        if (validation.isValid()) {
+            final Optional<User> user = userService.getByCredentials(credentials);
 
-           if(!user.isPresent()){
-               //add new user
-               Optional<User> addedUser = userService.addUser(newUser);
-               if(addedUser.isPresent()){
-                   logger.info("User was added");
-                   final HttpSession session = req.getSession(true);
-                   session.setAttribute("user", newUser); //session.setAttribute("user",user.get());
-               }
-               else{
-                   //couldn't add new user
-                   logger.info("couldn't add new user");
-               }
-           }else{
-               //user with such login is already exist
-               logger.info("couldn't add new user - user with such login is already exist");
-               validation.getErrors().put("INVALID_CREDENTIALS", true);
-           }
-       }
+            if (!user.isPresent()) {
+                //add new user
+                Optional<User> addedUser = userService.addUser(newUser);
+                if (addedUser.isPresent()) {
+                    logger.info("User was added");
+                    final HttpSession session = req.getSession(true);
+                    session.setAttribute("user", newUser); //session.setAttribute("user",user.get());
+                } else {
+                    //couldn't add new user
+                    logger.info("couldn't add new user");
+                }
+            } else {
+                //user with such login is already exist
+                logger.info("couldn't add new user - user with such login is already exist");
+                validation.getErrors().put("INVALID_CREDENTIALS", true);
+            }
+        }
 
-       if(!validation.isValid()){
-           req.setAttribute("validtion",validation);
-           req.getRequestDispatcher("WEB-INF/login.jsp").forward(req,resp);
-           return;
-       }
+        if (!validation.isValid()) {
+            req.setAttribute("validtion", validation);
+            req.getRequestDispatcher("WEB-INF/login.jsp").forward(req, resp);
+            return;
+        }
 
         resp.sendRedirect(req.getContextPath());
     }
@@ -111,11 +113,11 @@ public class RegistrationServlet extends HttpServlet {
     static FormValidation validate(Credentials credentials) {
         final FormValidation validation = new FormValidation();
 
-        if(credentials.getLogin()==null || credentials.getLogin().isEmpty()){
+        if (credentials.getLogin() == null || credentials.getLogin().isEmpty()) {
             validation.getFields().put(LOGIN, FieldValidation.builder().isEmptyField(true).build());
         }
 
-        if(credentials.getPassword()==null || credentials.getPassword().isEmpty()){
+        if (credentials.getPassword() == null || credentials.getPassword().isEmpty()) {
             validation.getFields().put(PASSWORD, FieldValidation.builder().isEmptyField(true).build());
         }
 

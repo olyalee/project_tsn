@@ -18,7 +18,7 @@ import java.io.IOException;
  */
 @Singleton
 //@WebServlet("")
-public class RootServlet extends HttpServlet{
+public class RootServlet extends HttpServlet {
     final static Logger logger = Logger.getLogger(RootServlet.class);
 
     @Override
@@ -31,6 +31,7 @@ public class RootServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("doPost in RootServlet");
+        req.setCharacterEncoding("UTF-8");
         req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
 }

@@ -61,6 +61,7 @@ public class MessagesServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         final HttpSession session = req.getSession(false);
         final User user = (User) session.getAttribute("user");
         String login = user.getLogin();
@@ -73,6 +74,9 @@ public class MessagesServlet extends HttpServlet {
                     .text(req.getParameter("messageText"))
                     .time(new Timestamp(System.currentTimeMillis())).build();
 
+
+            logger.info(req.getParameter("messageText"));
+
             if (messageService.create(message)) {
                 req.setAttribute("wasSent", "true");
             } else {
@@ -83,6 +87,9 @@ public class MessagesServlet extends HttpServlet {
 
         List<Message> messages = messageService.getByFromUser(login);
         messages.addAll(messageService.getByToUser(login));
+        for(int i=0; i<messages.size(); i++){
+            logger.info(messages.get(i).getText());
+        }
         session.setAttribute("messagesList", messages);
 
         req.getRequestDispatcher("/WEB-INF/jsp/messages.jsp").forward(req, resp);

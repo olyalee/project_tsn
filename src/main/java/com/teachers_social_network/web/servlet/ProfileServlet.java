@@ -35,14 +35,26 @@ public class ProfileServlet extends HttpServlet {
     }
 
     @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        final HttpSession session = req.getSession(false);
+        final User user = (User) session.getAttribute("user");
+        login = user.getLogin();
+
+
+
+        req.getRequestDispatcher("/WEB-INF/jsp/profile.jsp").forward(req,resp);
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final HttpSession session = req.getSession(false);
         final User user = (User) session.getAttribute("user");
         login = user.getLogin();
+
         logger.info("Getting education list for " + login);
         final List<Education> educations = userService.getEducationByLogin(login);
 
-        logger.info("Setting attribute -educationList- for "+ login);
         session.setAttribute("educationsList", educations);
 
         req.getRequestDispatcher("/WEB-INF/jsp/profile.jsp").forward(req,resp);

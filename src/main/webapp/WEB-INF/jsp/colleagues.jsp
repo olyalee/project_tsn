@@ -25,7 +25,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="row">
+    <div class="row" style="color:green">
         <div class="col-md-10">
             <c:if test="${requestScope.wasAdded!=null}">
                 <c:choose>
