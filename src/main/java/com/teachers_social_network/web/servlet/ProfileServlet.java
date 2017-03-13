@@ -1,6 +1,7 @@
 package com.teachers_social_network.web.servlet;
 
 import com.teachers_social_network.model.Education;
+import com.teachers_social_network.model.Gender;
 import com.teachers_social_network.model.User;
 import com.teachers_social_network.service.interfaces.SecurityService;
 import com.teachers_social_network.service.interfaces.UserService;
@@ -14,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -29,7 +33,7 @@ public class ProfileServlet extends HttpServlet {
     private final SecurityService securityService;
 
     @Inject
-    public ProfileServlet(UserService userService, SecurityService securityService){
+    public ProfileServlet(UserService userService, SecurityService securityService) {
         this.userService = userService;
         this.securityService = securityService;
     }
@@ -42,8 +46,93 @@ public class ProfileServlet extends HttpServlet {
         login = user.getLogin();
 
 
+        if (req.getParameter("editInfo") != null && userService.getByLogin(login)!=user) {
+            logger.debug("build updated user");
+            User updatedUser = User.builder()
+                    .login(user.getLogin())
+                    .passwordHash(user.getPasswordHash())
+                    .firstName(req.getParameter("firstName"))
+                    .lastName(req.getParameter("lastName"))
+                    .gender(userService.parseGender(req.getParameter("gender")))
+                    .email(req.getParameter("email"))
+                    .birthDate(Date.valueOf(userService.parseDate(req.getParameter("birthDate")).toLocalDate()))                               //(userService.parseDate("01.02.1978"))                      //
+                    .country(req.getParameter("country"))
+                    .city(req.getParameter("city"))
+                    .science_field(req.getParameter("scienceField"))
+                    .working_place(req.getParameter("workingPlace"))
+                    .position(req.getParameter("position"))
+                    .build();
 
-        req.getRequestDispatcher("/WEB-INF/jsp/profile.jsp").forward(req,resp);
+            if (userService.updateUser(updatedUser)) {
+                logger.debug("setting updated user for session if update was successful");
+                session.setAttribute("user", updatedUser);
+                req.setAttribute("wasUpdated", true);
+            } else {
+                logger.debug("couldn't update user's info");
+                req.setAttribute("wasUpdated", false);
+            }
+        }
+
+        if(req.getParameter("editEdication")!=null){
+            logger.debug("build updated education");
+            Education updatedEducation = Education.builder()
+                    .id(Integer.parseInt(req.getParameter("edicationId")))
+                    .login(login)
+                    .educationType(req.getParameter("educationType"))
+                    .placeType(req.getParameter("placeType"))
+                    .placeTitle(req.getParameter("placeTitle"))
+                    .major(req.getParameter("major"))
+                    .startYear(Integer.parseInt(req.getParameter("startYear")))
+                    .endYear(Integer.parseInt(req.getParameter("endYear")))
+                    .build();
+
+            logger.debug(Integer.parseInt(req.getParameter("edicationId")));
+            logger.debug(login);
+            logger.debug(req.getParameter("educationType"));
+            logger.debug(req.getParameter("placeType"));
+            logger.debug(req.getParameter("placeTitle"));
+            logger.debug(req.getParameter("major"));
+            logger.debug(Integer.parseInt(req.getParameter("startYear")));
+            logger.debug(Integer.parseInt(req.getParameter("endYear")));
+
+            if(userService.updateEducation(updatedEducation)){
+                logger.debug("education was updated");
+                req.setAttribute("educationWasUpdated", true);
+            }else{
+                logger.debug("couldn't update education");
+                req.setAttribute("educationWasUpdated", false);
+            }
+        }
+
+        if(req.getParameter("addFormForNewEducation")!=null){
+            req.setAttribute("addNew",true);
+        }
+
+        if(req.getParameter("addNewEducation")!=null){
+            Education newEducation = Education.builder()
+                    .id(1)
+                    .login(login)
+                    .educationType(req.getParameter("newEducationType"))
+                    .placeType(req.getParameter("newPlaceType"))
+                    .placeTitle(req.getParameter("newPlaceTitle"))
+                    .major(req.getParameter("newMajor"))
+                    .startYear(Integer.parseInt(req.getParameter("newStartYear")))
+                    .endYear(Integer.parseInt(req.getParameter("newEndYear")))
+                    .build();
+
+            if(userService.addEducation(newEducation)){
+                logger.debug("new education was added");
+                req.setAttribute("educationWasAdded", true);
+            }else{
+                logger.debug("couldn't add education");
+                req.setAttribute("educationWasAdded", false);
+            }
+        }
+
+        final List<Education> educationsUpdate = userService.getEducationByLogin(login);
+        session.setAttribute("educationsList", educationsUpdate);
+
+        req.getRequestDispatcher("/WEB-INF/jsp/profile.jsp").forward(req, resp);
     }
 
     @Override
@@ -57,6 +146,6 @@ public class ProfileServlet extends HttpServlet {
 
         session.setAttribute("educationsList", educations);
 
-        req.getRequestDispatcher("/WEB-INF/jsp/profile.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/profile.jsp").forward(req, resp);
     }
 }

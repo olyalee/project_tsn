@@ -53,15 +53,6 @@ public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         logger.info("doPost from " + req.getParameter(LOGIN));
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        Date birthDate;
-        try {
-            birthDate = new Date((dateFormat.parse(req.getParameter("newBirthDate"))).getTime()); //(Date) dateFormat.parse((req.getParameter("newBirthDate")));
-        } catch (ParseException e) {
-            logger.error("couldn't parse birthdate");
-            birthDate = null;
-        }
-
 
         final Credentials credentials = Credentials.builder().login(req.getParameter(LOGIN)).password(req.getParameter(PASSWORD)).build();
         final User newUser = User.builder()
@@ -70,7 +61,7 @@ public class RegistrationServlet extends HttpServlet {
                 .firstName(req.getParameter("newFirstname"))
                 .lastName(req.getParameter("newLastname"))
                 .gender(Gender.valueOf((req.getParameter("newGender")).toUpperCase()))
-                .birthDate(birthDate)                                            //(Date.valueOf(req.getParameter("newBirthDate")))
+                .birthDate(userService.parseDate(req.getParameter("newBirthDate")))
                 .email(req.getParameter("newEmail"))
                 .country(req.getParameter("newCountry"))
                 .city(req.getParameter("newCity"))

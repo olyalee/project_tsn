@@ -1,10 +1,8 @@
 package com.teachers_social_network.service.impl;
 
 import com.teachers_social_network.service.interfaces.SecurityService;
-import com.teachers_social_network.web.servlet.RootServlet;
 import org.apache.log4j.Logger;
 
-import javax.inject.Singleton;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

@@ -106,16 +106,19 @@ public class PgEducationDao implements EducationDao {
 
     @Override
     public boolean update(Education education) {
-        String sql = "UPDATE public.education SET education_type = ?, place_type = ?, start_year = ?, end_year = ? WHERE login = ? AND place_title = ? AND major = ? ;";
+//        String sql = "UPDATE public.education SET education_type = ?, place_type = ?, start_year = ?, end_year = ? WHERE login = ? AND place_title = ? AND major = ? ;";
+        String sql = "UPDATE public.education SET education_type = ?, place_type = ?, place_title = ?, major = ?, start_year = ?, end_year = ? WHERE education_id = ?;";
+        logger.debug(sql);
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, education.getEducationType());
                 ps.setString(2, education.getPlaceType());
-                ps.setInt(3, education.getStartYear());
-                ps.setInt(4, education.getEndYear());
-                ps.setString(5, education.getLogin());
-                ps.setString(6, education.getPlaceTitle());
-                ps.setString(7, education.getMajor());
+                ps.setString(3, education.getPlaceTitle());
+                ps.setString(4, education.getMajor());
+                ps.setInt(5, education.getStartYear());
+                ps.setInt(6, education.getEndYear());
+                ps.setInt(7, education.getId());
+
                 int rows = ps.executeUpdate();
                 if (rows > 0) return true;
             } catch (SQLException e) {

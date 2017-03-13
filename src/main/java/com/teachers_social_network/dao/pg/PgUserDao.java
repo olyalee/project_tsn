@@ -33,7 +33,7 @@ public class PgUserDao implements UserDao {
                 ps.setString(1, login);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    user = User.builder().birthDate(rs.getDate("birth_date"))
+                    user = User.builder().birthDate(Date.valueOf(rs.getDate("birth_date").toLocalDate()))
                             .city(rs.getString("city"))
                             .country(rs.getString("country"))
                             .email(rs.getString("email"))
@@ -57,11 +57,6 @@ public class PgUserDao implements UserDao {
         }
 
         return Optional.empty();
-//        if (!"test".equals(login)) {
-//            return Optional.empty();
-//        }
-//
-//        return Optional.of(User.builder().firstName("John").lastName("Doe").gender(Gender.MALE).birthDate(new Date()).email("ya@mail.ru").login("test@test.ru").passwordHash(securityService.encrypt("test")).build());
     }
 
     @Override

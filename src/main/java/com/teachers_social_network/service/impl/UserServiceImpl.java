@@ -14,6 +14,8 @@ import com.teachers_social_network.web.servlet.RootServlet;
 import org.apache.log4j.Logger;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -89,5 +91,54 @@ public class UserServiceImpl implements UserService {
     public List<Education> getEducationByLogin(String login) {
         List<Education> educations = educationDao.getByLogin(login);
         return educations;
+    }
+
+    @Override
+    public boolean updateEducation(Education education) {
+        return educationDao.update(education);
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        return userDao.update(user);
+    }
+
+    @Override
+    public boolean addEducation(Education education) {
+        return educationDao.create(education);
+    }
+
+    @Override
+    public Date parseDate(String stringDate) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Date birthDate;
+        try {
+            birthDate = new Date((dateFormat.parse(stringDate)).getTime()); //(Date) dateFormat.parse((req.getParameter("newBirthDate")));
+        } catch (ParseException e) {
+            logger.error("couldn't parse birthdate like dd.MM.yyyy");
+            dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                logger.debug("trying to parse like yyyy-MM-dd");
+                birthDate = new Date((dateFormat.parse(stringDate)).getTime());
+            } catch (ParseException e1) {
+                logger.error("couldn't parse birthdate like yyyy-MM-dd");
+                birthDate = null;
+            }
+        }
+        return birthDate;
+    }
+
+    @Override
+    public Gender parseGender(String stringGender) {
+        Gender gender;
+        if(stringGender.equalsIgnoreCase("male")){
+            gender = Gender.MALE;
+        }else if(stringGender.equalsIgnoreCase("female")){
+            gender = Gender.FEMALE;
+        }else {
+            gender = Gender.UNKNOWN;
+        }
+
+        return gender;
     }
 }
