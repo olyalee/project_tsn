@@ -72,27 +72,28 @@ public class ProfileServlet extends HttpServlet {
             }
         }
 
-        if(req.getParameter("editEdication")!=null){
+        if(req.getParameter("editEducation")!=null){
             logger.debug("build updated education");
+            String id = req.getParameter("educationId");
             Education updatedEducation = Education.builder()
-                    .id(Integer.parseInt(req.getParameter("edicationId")))
+                    .id(Integer.parseInt(id))
                     .login(login)
-                    .educationType(req.getParameter("educationType"))
-                    .placeType(req.getParameter("placeType"))
-                    .placeTitle(req.getParameter("placeTitle"))
-                    .major(req.getParameter("major"))
-                    .startYear(Integer.parseInt(req.getParameter("startYear")))
-                    .endYear(Integer.parseInt(req.getParameter("endYear")))
+                    .educationType(req.getParameter("educationType"+id))
+                    .placeType(req.getParameter("placeType"+id))
+                    .placeTitle(req.getParameter("placeTitle"+id))
+                    .major(req.getParameter("major"+id))
+                    .startYear(Integer.parseInt(req.getParameter("startYear"+id)))
+                    .endYear(Integer.parseInt(req.getParameter("endYear"+id)))
                     .build();
 
-            logger.debug(Integer.parseInt(req.getParameter("edicationId")));
+            logger.debug(id);
             logger.debug(login);
-            logger.debug(req.getParameter("educationType"));
-            logger.debug(req.getParameter("placeType"));
-            logger.debug(req.getParameter("placeTitle"));
-            logger.debug(req.getParameter("major"));
-            logger.debug(Integer.parseInt(req.getParameter("startYear")));
-            logger.debug(Integer.parseInt(req.getParameter("endYear")));
+            logger.debug(req.getParameter("educationType"+id));
+            logger.debug(req.getParameter("placeType"+id));
+            logger.debug(req.getParameter("placeTitle"+id));
+            logger.debug(req.getParameter("major"+id));
+            logger.debug(Integer.parseInt(req.getParameter("startYear"+id)));
+            logger.debug(Integer.parseInt(req.getParameter("endYear"+id)));
 
             if(userService.updateEducation(updatedEducation)){
                 logger.debug("education was updated");
@@ -129,10 +130,7 @@ public class ProfileServlet extends HttpServlet {
         }
 
         if(req.getParameter("deleteEducation")!=null){
-            logger.debug(req.getParameter("educationId"));
-            logger.debug(req.getParameterMap().get("educationId"));
             int id = Integer.parseInt(req.getParameter("educationId"));
-            logger.debug(id);
             if(userService.deleteEducation(id)){
                 logger.debug("education was deleted");
                 req.setAttribute("educationWasDeleted", true);

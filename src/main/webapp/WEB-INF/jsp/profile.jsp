@@ -229,7 +229,7 @@
                                                              value="${deleteEducation}" name="deleteEducation"></div>
                                 <div class="col-md-1">
                                     <input type="submit" class="btn btn-success btn-send"
-                                           value="${saveChanges}" name="saveChanges${education.id}"></div>
+                                           value="${saveChanges}" name="editEducation"></div>
                             </div>
                         </li>
                         <li class="list-group-item">
@@ -279,7 +279,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-4"><label>${startYear}</label></div>
-                                <div class="col-md-4"><label>${startYear}</label></div>
+                                <div class="col-md-4"><label>${education.startYear}</label></div>
                                 <div class="col-md-3" style="float: right"><input type="text" name="newStartYear"
                                                                                   placeholder="${startYear}"
                                                                                   required></div>
