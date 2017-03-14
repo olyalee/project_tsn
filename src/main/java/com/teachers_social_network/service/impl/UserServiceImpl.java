@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Inject
     public UserServiceImpl(UserDao userDao, EducationDao educationDao, SecurityService securityService) {
 
-        logger.info("constract UserServiceImpl");
+//        logger.info("constract UserServiceImpl");
 
         this.userDao = userDao;
         this.educationDao = educationDao;
@@ -64,18 +64,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> getByCredentials(Credentials credentials) {
-        logger.info("try to get user by credentials");
+//        logger.info("try to get user by credentials");
         final Optional<User> userOptional = userDao.getByLogin(credentials.getLogin());
 
         if(!userOptional.isPresent()){
-            logger.info("there is no such user");
+//            logger.info("there is no such user");
             return Optional.empty();
         }
 
         final User user = userOptional.get();
 
         if(!securityService.validate(credentials.getPassword(),user.getPasswordHash())){
-            logger.info("validation was failed");
+//            logger.info("validation was failed");
             return Optional.empty();
         }
 
@@ -101,6 +101,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean updateUser(User user) {
         return userDao.update(user);
+    }
+
+    @Override
+    public boolean deleteEducation(int id) {
+        return educationDao.delete(educationDao.getById(id).get());
     }
 
     @Override

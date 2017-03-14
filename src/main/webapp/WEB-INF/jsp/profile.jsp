@@ -41,11 +41,12 @@
 <%--Invalid profile.--%>
 <%--</div>--%>
 <%--</c:if>--%>
-<form action="profile" method="post">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10">
-                <ul class="list-group">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <ul class="list-group">
+                <form id="info" action="profile" method="post">
                     <li class="list-group-item">
                         <div class="row" style="color:grey">
                             <div class="col-md-2"><label>${myProfile}</label></div>
@@ -153,22 +154,24 @@
                     <li class="list-group-item">
                         <div class="row"></div>
                     </li>
-                    <%--Education block--%>
-                    <li class="list-group-item">
-                        <div class="row" style="color:grey">
-                            <div class="col-md-10"><label>${education}</label></div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                        </div>
-                    </li>
-                    <c:forEach var="education" items="${sessionScope.educationsList}">
+                </form>
+                <%--Education block--%>
+                <li class="list-group-item">
+                    <div class="row" style="color:grey">
+                        <div class="col-md-10"><label>${education}</label></div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                    </div>
+                </li>
+                <c:forEach var="education" items="${sessionScope.educationsList}">
+                    <form id="educationForm" action="profile" method="post">
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-4"><label>${educationType}</label></div>
-                                <div class="col-md-3"><label>${education.educationType}</label></div>
-                                <div class="col-md-3" style="float: right"><input type="text" name="educationType"
+                                <div class="col-md-4"><label>${education.educationType}</label></div>
+                                <div class="col-md-3" style="float: right"><input type="text" name="educationType${education.id}"
                                                                                   placeholder="${education.educationType}"
                                                                                   value="${education.educationType}">
                                 </div>
@@ -178,7 +181,7 @@
                             <div class="row">
                                 <div class="col-md-4"><label>${placeType}</label></div>
                                 <div class="col-md-4"><label>${education.placeType}</label></div>
-                                <div class="col-md-3" style="float: right"><input type="text" name="placeType"
+                                <div class="col-md-3" style="float: right"><input type="text" name="placeType${education.id}"
                                                                                   placeholder="${education.placeType}"
                                                                                   value="${education.placeType}"></div>
                             </div>
@@ -187,7 +190,7 @@
                             <div class="row">
                                 <div class="col-md-4"><label>${placeTitle}</label></div>
                                 <div class="col-md-4"><label>${education.placeTitle}</label></div>
-                                <div class="col-md-3" style="float: right"><input type="text" name="placeTitle"
+                                <div class="col-md-3" style="float: right"><input type="text" name="placeTitle${education.id}"
                                                                                   placeholder="${education.placeTitle}"
                                                                                   value="${education.placeTitle}"></div>
                             </div>
@@ -196,7 +199,7 @@
                             <div class="row">
                                 <div class="col-md-4"><label>${major}</label></div>
                                 <div class="col-md-4"><label>${education.major}</label></div>
-                                <div class="col-md-3" style="float: right"><input type="text" name="major"
+                                <div class="col-md-3" style="float: right"><input type="text" name="major${education.id}"
                                                                                   placeholder="${education.major}"
                                                                                   value="${education.major}"></div>
                             </div>
@@ -205,7 +208,7 @@
                             <div class="row">
                                 <div class="col-md-4"><label>${startYear}</label></div>
                                 <div class="col-md-4"><label>${education.startYear}</label></div>
-                                <div class="col-md-3" style="float: right"><input type="text" name="startYear"
+                                <div class="col-md-3" style="float: right"><input type="text" name="startYear${education.id}"
                                                                                   placeholder="${education.startYear}"
                                                                                   value="${education.startYear}"></div>
                             </div>
@@ -214,27 +217,29 @@
                             <div class="row">
                                 <div class="col-md-4"><label>${endYear}</label></div>
                                 <div class="col-md-4"><label>${education.endYear}</label></div>
-                                <div class="col-md-3" style="float: right"><input type="text" name="endYear"
+                                <div class="col-md-3" style="float: right"><input type="text" name="endYear${education.id}"
                                                                                   placeholder="${education.endYear}"
                                                                                   value="${education.endYear}"></div>
                             </div>
                         </li>
                         <li class="list-group-item">
                             <div class="row">
-                                <input type="hidden" name="edicationId" value="${education.id}">
+                                <input type="hidden" name="educationId" value="${education.id}">
                                 <div class="col-md-9"><input type="submit" class="btn btn-danger btn-send"
                                                              value="${deleteEducation}" name="deleteEducation"></div>
                                 <div class="col-md-1">
                                     <input type="submit" class="btn btn-success btn-send"
-                                           value="${saveChanges}" name="saveChanges"></div>
+                                           value="${saveChanges}" name="saveChanges${education.id}"></div>
                             </div>
                         </li>
                         <li class="list-group-item">
                             <div class="row"></div>
                         </li>
-                    </c:forEach>
-                    <%--Block for adding a new education--%>
-                    <c:if test="${requestScope.addNew!=null}">
+                    </form>
+                </c:forEach>
+                <%--Block for adding a new education--%>
+                <c:if test="${requestScope.addNew!=null}">
+                    <form id="newEducationForm" action="profile" method="post">
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-4"><label>${educationType}</label></div>
@@ -292,25 +297,27 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <span class="col-md-9"></span>
-                                <input type="hidden" name="newEdicationId" value="${education.id}">
+                                <input type="hidden" name="newEducationId" value="${education.id}">
                                 <div class="col-md-1">
                                     <input type="submit" class="btn btn-success btn-send"
                                            value="${addNew}" name="addNewEducation">
                                 </div>
                             </div>
                         </li>
-                    </c:if>
+                    </form>
+                </c:if>
+                <form id="addEducationForm" action="profile" method="post">
                     <li class="list-group-item">
                         <div class="row">
-                                <div class="col-md-2"><input type="submit" class="btn btn-info btn-send"
-                                                             value="${addNewEducation}" name="addFormForNewEducation">
-                                </div>
+                            <div class="col-md-2"><input type="submit" class="btn btn-info btn-send"
+                                                         value="${addNewEducation}" name="addFormForNewEducation">
+                            </div>
                         </div>
                     </li>
-                </ul>
-            </div>
+                </form>
+            </ul>
         </div>
     </div>
-</form>
+</div>
 </body>
 </html>

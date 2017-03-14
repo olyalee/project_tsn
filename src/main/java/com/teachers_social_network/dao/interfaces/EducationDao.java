@@ -20,4 +20,6 @@ public interface EducationDao {
 
     /**delete education from DB*/
     boolean delete(Education education);
+
+    Optional<Education> getById(int id);
 }

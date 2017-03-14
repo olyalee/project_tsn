@@ -15,7 +15,7 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public String encrypt(String password) {
-        logger.info("secure the pass");
+//        logger.info("secure the pass");
         final Charset charset = Charset.forName("UTF-8");
         try {
             return new String(MessageDigest.getInstance("MD5").digest(password.getBytes(charset)),charset);
@@ -27,7 +27,7 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public boolean validate(String password, String hash) {
-        logger.info("validate");
+//        logger.info("validate");
         return hash.equals(encrypt(password));
 
     }

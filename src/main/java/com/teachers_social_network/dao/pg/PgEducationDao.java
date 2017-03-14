@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * PostgreSQL implementation for EducationDao
@@ -102,6 +103,37 @@ public class PgEducationDao implements EducationDao {
             logger.error("Couldn't get connection ", e);
         }
         return user_educations;
+    }
+
+    @Override
+    public Optional<Education> getById(int id) {
+        Education education;
+        String sql = "SELECT * FROM public.education WHERE education_id = ?;";
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ps.setInt(1,id);
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    education = Education.builder()
+                            .id(rs.getInt("education_id"))
+                            .login(rs.getString("login"))
+                            .educationType(rs.getString("education_type"))
+                            .placeType(rs.getString("place_type"))
+                            .placeTitle(rs.getString("place_title"))
+                            .major(rs.getString("major"))
+                            .startYear(rs.getInt("start_year"))
+                            .endYear(rs.getInt("end_year")).build();
+                    return Optional.of(education);
+                }
+            }catch (SQLException e) {
+                logger.error("Couldn't execute SQL query " + id, e);
+            }
+        }catch (InterruptedException e) {
+            logger.error("Couldn't get connection ", e);
+        } catch (SQLException e) {
+            logger.error("Couldn't get connection ", e);
+        }
+        return Optional.empty();
     }
 
     @Override

@@ -27,4 +27,6 @@ public interface UserService {
 
     Date parseDate(String stringDate);
     Gender parseGender(String stringGender);
+
+    boolean deleteEducation(int id);
 }
