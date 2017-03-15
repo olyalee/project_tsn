@@ -50,7 +50,6 @@ public class ColleaguesServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
         final HttpSession session = req.getSession(false);
         final User user = (User) session.getAttribute("user");
         String login = user.getLogin();

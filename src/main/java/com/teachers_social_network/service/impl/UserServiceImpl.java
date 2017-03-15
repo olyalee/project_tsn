@@ -89,6 +89,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Education> getEducationByLogin(String login) {
+        logger.debug("get education list for " + login);
         List<Education> educations = educationDao.getByLogin(login);
         return educations;
     }

@@ -111,7 +111,15 @@
                 <c:forEach var="colleague" items="${sessionScope.colleaguesList}">
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-md-3"><label>${colleague.firstName} ${colleague.lastName}</label></div>
+                            <div class="col-md-3">
+                                <c:url value="otherProfile" var="goToOtherProfile">
+                                    <c:param name="colleagueLogin" value="${colleague.login}"/>
+                                </c:url>
+                                <a href="${goToOtherProfile}"><label>
+                                        ${colleague.firstName} ${colleague.lastName}
+                                </label>
+                                </a>
+                            </div>
                             <div class="col-md-2"><label>${colleague.login}</label></div>
                             <div class="col-md-2"><label>${colleague.science_field}</label></div>
                             <div class="col-md-2"><label>${colleague.working_place}</label></div>

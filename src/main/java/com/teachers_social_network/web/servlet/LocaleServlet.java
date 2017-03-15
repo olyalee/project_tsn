@@ -21,7 +21,6 @@ public class LocaleServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
         logger.info("doPost " + req.getParameter("locale"));
 
         final HttpSession session = req.getSession(true);

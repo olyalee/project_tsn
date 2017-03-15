@@ -32,15 +32,9 @@
     <fmt:message var="addNewEducation" bundle="${profile}" key="profile.add.new.education"/>
     <fmt:message var="deleteEducation" bundle="${profile}" key="profile.delete.education"/>
     <fmt:message var="addNew" bundle="${profile}" key="profile.add.new"/>
-    <%--<jsp:useBean id="validation" class="com.teachers_social_network.web.servlet.model.FormValidation" scope="request"/>--%>
     <tags:menu title="${title}"/>
 </head>
 <body>
-<%--<c:if test="${validation.errors.INVALID_PROFILE}">--%>
-<%--<div class="alert alert-danger">--%>
-<%--Invalid profile.--%>
-<%--</div>--%>
-<%--</c:if>--%>
 
 <div class="container">
     <div class="row">
@@ -55,7 +49,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-4"><label>${firstName}</label></div>
-                            <div class="col-md-3"><label>${user.firstName}</label></div>
+                            <div class="col-md-3" ><label>${user.firstName}</label></div>
                             <div class="col-md-3" style="float: right"><input type="text" name="firstName"
                                                                               placeholder="${user.firstName}"
                                                                               value="${user.firstName}"></div>
@@ -64,7 +58,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-4"><label>${lastName}</label></div>
-                            <div class="col-md-3"><label>${user.lastName}</label></div>
+                            <div class="col-md-3" ><label>${user.lastName}</label></div>
                             <div class="col-md-3" style="float: right"><input type="text" name="lastName"
                                                                               placeholder="${user.lastName}"
                                                                               value="${user.lastName}"></div>
@@ -73,7 +67,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-4"><label>${gender}</label></div>
-                            <div class="col-md-3"><label>${user.gender}</label></div>
+                            <div class="col-md-3" ><label>${user.gender}</label></div>
                             <div class="col-md-3" style="float: right"><input type="text" name="gender"
                                                                               placeholder="${user.gender}"
                                                                               value="${user.gender}"></div>
@@ -82,7 +76,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-4"><label>${birthDate}</label></div>
-                            <div class="col-md-4"><label>${user.birthDate}</label></div>
+                            <div class="col-md-4" ><label>${user.birthDate}</label></div>
                             <div class="col-md-3" style="float: right"><input type="text" name="birthDate"
                                                                               placeholder="${user.birthDate}"
                                                                               value="${user.birthDate}"></div>
@@ -91,7 +85,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-4"><label>${email}</label></div>
-                            <div class="col-md-3"><label>${user.email}</label></div>
+                            <div class="col-md-3" ><label>${user.email}</label></div>
                             <div class="col-md-3" style="float: right"><input type="text" name="email"
                                                                               placeholder="${user.email}"
                                                                               value="${user.email}"></div>
@@ -100,7 +94,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-4"><label>${country}</label></div>
-                            <div class="col-md-3"><label>${user.country}</label></div>
+                            <div class="col-md-3" ><label>${user.country}</label></div>
                             <div class="col-md-3" style="float: right"><input type="text" name="country"
                                                                               placeholder="${user.country}"
                                                                               value="${user.country}"></div>
@@ -109,7 +103,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-4"><label>${city}</label></div>
-                            <div class="col-md-3"><label>${user.city}</label></div>
+                            <div class="col-md-3" ><label>${user.city}</label></div>
                             <div class="col-md-3" style="float: right"><input type="text" name="city"
                                                                               placeholder="${user.city}"
                                                                               value="${user.city}"></div>
@@ -118,7 +112,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-4"><label>${scienceField}</label></div>
-                            <div class="col-md-3"><label>${user.science_field}</label></div>
+                            <div class="col-md-3" ><label>${user.science_field}</label></div>
                             <div class="col-md-3" style="float: right"><input type="text" name="scienceField"
                                                                               placeholder="${user.science_field}"
                                                                               value="${user.science_field}"></div>
@@ -127,7 +121,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-4"><label>${workingPlace}</label></div>
-                            <div class="col-md-3"><label>${user.working_place}</label></div>
+                            <div class="col-md-3" ><label>${user.working_place}</label></div>
                             <div class="col-md-3" style="float: right"><input type="text" name="workingPlace"
                                                                               placeholder="${user.working_place}"
                                                                               value="${user.working_place}"></div>
@@ -136,7 +130,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-4"><label>${position}</label></div>
-                            <div class="col-md-3"><label>${user.position}</label></div>
+                            <div class="col-md-3" ><label>${user.position}</label></div>
                             <div class="col-md-3" style="float: right"><input type="text" name="position"
                                                                               placeholder="${user.position}"
                                                                               value="${user.position}"></div>
@@ -170,7 +164,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-4"><label>${educationType}</label></div>
-                                <div class="col-md-4"><label>${education.educationType}</label></div>
+                                <div class="col-md-4" ><label>${education.educationType}</label></div>
                                 <div class="col-md-3" style="float: right"><input type="text" name="educationType${education.id}"
                                                                                   placeholder="${education.educationType}"
                                                                                   value="${education.educationType}">
@@ -180,7 +174,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-4"><label>${placeType}</label></div>
-                                <div class="col-md-4"><label>${education.placeType}</label></div>
+                                <div class="col-md-4" ><label>${education.placeType}</label></div>
                                 <div class="col-md-3" style="float: right"><input type="text" name="placeType${education.id}"
                                                                                   placeholder="${education.placeType}"
                                                                                   value="${education.placeType}"></div>
@@ -189,7 +183,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-4"><label>${placeTitle}</label></div>
-                                <div class="col-md-4"><label>${education.placeTitle}</label></div>
+                                <div class="col-md-4" ><label>${education.placeTitle}</label></div>
                                 <div class="col-md-3" style="float: right"><input type="text" name="placeTitle${education.id}"
                                                                                   placeholder="${education.placeTitle}"
                                                                                   value="${education.placeTitle}"></div>
@@ -198,7 +192,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-4"><label>${major}</label></div>
-                                <div class="col-md-4"><label>${education.major}</label></div>
+                                <div class="col-md-4" ><label>${education.major}</label></div>
                                 <div class="col-md-3" style="float: right"><input type="text" name="major${education.id}"
                                                                                   placeholder="${education.major}"
                                                                                   value="${education.major}"></div>
@@ -207,7 +201,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-4"><label>${startYear}</label></div>
-                                <div class="col-md-4"><label>${education.startYear}</label></div>
+                                <div class="col-md-4" ><label>${education.startYear}</label></div>
                                 <div class="col-md-3" style="float: right"><input type="text" name="startYear${education.id}"
                                                                                   placeholder="${education.startYear}"
                                                                                   value="${education.startYear}"></div>
@@ -216,7 +210,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-4"><label>${endYear}</label></div>
-                                <div class="col-md-4"><label>${education.endYear}</label></div>
+                                <div class="col-md-4" ><label>${education.endYear}</label></div>
                                 <div class="col-md-3" style="float: right"><input type="text" name="endYear${education.id}"
                                                                                   placeholder="${education.endYear}"
                                                                                   value="${education.endYear}"></div>
@@ -243,7 +237,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-4"><label>${educationType}</label></div>
-                                <div class="col-md-3"><label></label></div>
+                                <div class="col-md-3" ><label></label></div>
                                 <div class="col-md-3" style="float: right"><input type="text" name="newEducationType"
                                                                                   placeholder="${educationType}"
                                                                                   required></div>
@@ -252,7 +246,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-4"><label>${placeType}</label></div>
-                                <div class="col-md-4"><label>${education.placeType}</label></div>
+                                <div class="col-md-4" ><label>${education.placeType}</label></div>
                                 <div class="col-md-3" style="float: right"><input type="text" name="newPlaceType"
                                                                                   placeholder="${placeType}"
                                                                                   required></div>
@@ -270,7 +264,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-4"><label>${major}</label></div>
-                                <div class="col-md-4"><label>${education.major}</label></div>
+                                <div class="col-md-4" ><label>${education.major}</label></div>
                                 <div class="col-md-3" style="float: right"><input type="text" name="newMajor"
                                                                                   placeholder="${major}"
                                                                                   required></div>
@@ -279,7 +273,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-4"><label>${startYear}</label></div>
-                                <div class="col-md-4"><label>${education.startYear}</label></div>
+                                <div class="col-md-4" ><label>${education.startYear}</label></div>
                                 <div class="col-md-3" style="float: right"><input type="text" name="newStartYear"
                                                                                   placeholder="${startYear}"
                                                                                   required></div>
@@ -288,7 +282,7 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-4"><label>${endYear}</label></div>
-                                <div class="col-md-4"><label>${education.endYear}</label></div>
+                                <div class="col-md-4" ><label>${education.endYear}</label></div>
                                 <div class="col-md-3" style="float: right"><input type="text" name="newEndYear"
                                                                                   placeholder="${education.endYear}"
                                                                                   required></div>

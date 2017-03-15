@@ -31,7 +31,6 @@ public class RootServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("doPost in RootServlet");
-        req.setCharacterEncoding("UTF-8");
         req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
 }

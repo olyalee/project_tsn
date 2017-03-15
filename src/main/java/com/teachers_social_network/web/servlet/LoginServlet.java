@@ -48,7 +48,6 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req,resp);
-        req.setCharacterEncoding("UTF-8");
 
         final Credentials credentials = Credentials.builder().login(req.getParameter(LOGIN)).password(req.getParameter(PASSWORD)).build();
         logger.info("doPost " + req.getParameter(LOGIN) + " " + req.getParameter(PASSWORD));

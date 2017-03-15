@@ -9,6 +9,8 @@ import com.teachers_social_network.dao.interfaces.*;
 import com.teachers_social_network.dao.pg.*;
 import com.teachers_social_network.service.impl.*;
 import com.teachers_social_network.service.interfaces.*;
+import com.teachers_social_network.web.filter.CharsetFilter;
+import com.teachers_social_network.web.filter.LoggedInFilter;
 import com.teachers_social_network.web.servlet.*;
 import org.apache.log4j.Logger;
 import com.google.inject.Singleton;
@@ -59,12 +61,21 @@ public class GuiceConfig extends GuiceServletContextListener {
             serve("/colleagues").with(ColleaguesServlet.class);
             serve("/communities").with(CommunitiesServlet.class);
             serve("/messages").with(MessagesServlet.class);
+            serve("/otherProfile").with(OtherProfileServlet.class);
+        }
+    }
+
+    private static class FilterConfigModule extends ServletModule{
+        @Override
+        protected void configureServlets() {
+
+            filter("/*").through(CharsetFilter.class);
         }
     }
 
     @Override
     protected Injector getInjector() {
 //        logger.info("create injector");
-        return Guice.createInjector(new DependencyModule(), new ServletConfigModule());
+        return Guice.createInjector(new DependencyModule(), new ServletConfigModule(), new FilterConfigModule());
     }
 }
