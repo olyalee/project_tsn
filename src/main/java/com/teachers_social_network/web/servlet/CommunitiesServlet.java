@@ -35,8 +35,43 @@ public class CommunitiesServlet extends HttpServlet {
         String login = user.getLogin();
 
         List<Community> communities = communityService.communitiesForUser(login);
-        session.setAttribute("communitiesList",communities);
+        session.setAttribute("communitiesList", communities);
 
-        req.getRequestDispatcher("/WEB-INF/jsp/communities.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/communities.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        final HttpSession session = req.getSession(false);
+        final User user = (User) session.getAttribute("user");
+        String login = user.getLogin();
+
+        if (req.getParameter("addCommunity") != null) {
+            String communityTitle = req.getParameter("communityToAdd");
+            Community community = communityService.getCommunity(communityTitle).get();
+            if (!communityService.isUserInCommunity(community, login)) {
+                communityService.addMember(community,login);
+                req.setAttribute("wasAdded",true);
+            }else{
+                req.setAttribute("wasAdded", false);
+            }
+
+        }
+
+        if (req.getParameter("removeCommunity") != null) {
+            String communityTitle = req.getParameter("communityToRemove");
+            Community community = communityService.getCommunity(communityTitle).get();
+            if(communityService.isUserInCommunity(community,login)){
+                communityService.removeMember(community,login);
+                req.setAttribute("wasRemoved",true);
+            }else{
+                req.setAttribute("wasRemoved", false);
+            }
+        }
+
+        List<Community> communities = communityService.communitiesForUser(login);
+        session.setAttribute("communitiesList", communities);
+
+        req.getRequestDispatcher("/WEB-INF/jsp/communities.jsp").forward(req, resp);
     }
 }
