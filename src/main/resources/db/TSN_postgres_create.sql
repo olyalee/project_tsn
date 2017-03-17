@@ -30,7 +30,7 @@ CREATE TABLE "users" (
 
 
 CREATE TABLE "messages" (
-	"message_id" integer NOT NULL,
+	"message_id" serial NOT NULL,
 	"from_user" varchar NOT NULL,
 	"to_user" varchar NOT NULL,
 	"text" varchar NOT NULL,
@@ -40,10 +40,14 @@ CREATE TABLE "messages" (
   OIDS=FALSE
 );
 
+CREATE SEQUENCE message_id_seq START WITH 1;
+CREATE SEQUENCE education_id_seq START WITH 1;
+CREATE SEQUENCE post_id_seq START WITH 1;
+CREATE SEQUENCE community_id_seq START WITH 1;
 
 
 CREATE TABLE "communities" (
-	"community_id" integer NOT NULL,
+	"community_id" serial NOT NULL,
 	"title" varchar NOT NULL,
 	CONSTRAINT communities_pk PRIMARY KEY ("community_id")
 ) WITH (

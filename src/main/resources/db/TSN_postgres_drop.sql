@@ -1,3 +1,8 @@
+DROP SEQUENCE message_id_seq;
+DROP SEQUENCE education_id_seq;
+DROP SEQUENCE post_id_seq;
+DROP SEQUENCE community_id_seq;
+
 ALTER TABLE "messages" DROP CONSTRAINT IF EXISTS "messages_fk0";
 
 ALTER TABLE "messages" DROP CONSTRAINT IF EXISTS "messages_fk1";

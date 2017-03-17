@@ -35,7 +35,7 @@ public class PgCommunityDao implements CommunityDao {
         String sql = "INSERT INTO public.communities VALUES (?,?)";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                String nextval = "SELECT nextval('community_id_seq')";
+                String nextval = "SELECT nextval('community_id_seq')";   //String nextval = "SELECT nextval('communities_id_seq')";
                 st = connection.createStatement();
                 nextID = st.executeQuery(nextval);
                 nextID.next();

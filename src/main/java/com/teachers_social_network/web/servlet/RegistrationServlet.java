@@ -59,7 +59,7 @@ public class RegistrationServlet extends HttpServlet {
                 .passwordHash(req.getParameter(PASSWORD))
                 .firstName(req.getParameter("newFirstname"))
                 .lastName(req.getParameter("newLastname"))
-                .gender(Gender.valueOf((req.getParameter("newGender")).toUpperCase()))
+                .gender(userService.parseGender(req.getParameter("newGender")))
                 .birthDate(userService.parseDate(req.getParameter("newBirthDate")))
                 .email(req.getParameter("newEmail"))
                 .country(req.getParameter("newCountry"))

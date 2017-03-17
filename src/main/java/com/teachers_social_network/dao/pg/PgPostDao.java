@@ -33,7 +33,7 @@ public class PgPostDao implements PostDao {
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-                String nextval = "SELECT nextval('posts_id_seq')";
+                String nextval = "SELECT nextval('post_id_seq')";
                 st = connection.createStatement();
                 nextID = st.executeQuery(nextval);
                 nextID.next();

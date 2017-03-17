@@ -32,7 +32,7 @@ public class PgMessageDao implements MessageDao {
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-                String nextval = "SELECT nextval('messages_id_seq')";
+                String nextval = "SELECT nextval('message_id_seq')";
                 st = connection.createStatement();
                 nextID = st.executeQuery(nextval);
                 nextID.next();
