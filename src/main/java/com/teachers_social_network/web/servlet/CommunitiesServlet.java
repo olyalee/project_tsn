@@ -55,7 +55,6 @@ public class CommunitiesServlet extends HttpServlet {
             }else{
                 req.setAttribute("wasAdded", false);
             }
-
         }
 
         if (req.getParameter("removeCommunity") != null) {
@@ -66,6 +65,16 @@ public class CommunitiesServlet extends HttpServlet {
                 req.setAttribute("wasRemoved",true);
             }else{
                 req.setAttribute("wasRemoved", false);
+            }
+        }
+
+        if(req.getParameter("createCommunity")!=null){
+            String communityTitle = req.getParameter("communityToCreate");
+            Community newCommunity = Community.builder().id(1).title(communityTitle).build();
+            if(communityService.create(newCommunity)){
+                req.setAttribute("wasCreated",true);
+            }else{
+                req.setAttribute("wasCreated", false);
             }
         }
 

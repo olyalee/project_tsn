@@ -46,7 +46,7 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.info("doGet from " + request.getParameter(LOGIN));
-        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class RegistrationServlet extends HttpServlet {
 
         if (!validation.isValid()) {
             req.setAttribute("validtion", validation);
-            req.getRequestDispatcher("WEB-INF/login.jsp").forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/index.jsp").forward(req, resp);
             return;
         }
 

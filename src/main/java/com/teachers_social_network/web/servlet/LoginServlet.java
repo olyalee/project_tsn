@@ -24,7 +24,6 @@ import java.util.Optional;
  * Created by Olya Lee on 08.01.2017.
  */
 @Singleton
-//@WebServlet("/login")  //@WebServlet("/jsp")
 public class LoginServlet extends HttpServlet {
     final static Logger logger = Logger.getLogger(LoginServlet.class);
 
@@ -44,10 +43,9 @@ public class LoginServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }
 
-    //
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req,resp);
 
         final Credentials credentials = Credentials.builder().login(req.getParameter(LOGIN)).password(req.getParameter(PASSWORD)).build();
         logger.info("doPost " + req.getParameter(LOGIN) + " " + req.getParameter(PASSWORD));
@@ -55,19 +53,21 @@ public class LoginServlet extends HttpServlet {
         final FormValidation validation = validate(credentials);
 
         if (validation.isValid()) {
-
             final Optional<User> user = userService.getByCredentials(credentials);
 
             if (!user.isPresent()) {
+                logger.debug("there is now such user" + req.getParameter(LOGIN) + " " + req.getParameter(PASSWORD));
                 validation.getErrors().put("INVALID_CREDENTIALS", true);
                 req.getRequestDispatcher("WEB-INF/index.jsp").forward(req, resp);
             } else {
+                logger.debug("user " + LOGIN + " was logged in");
                 final HttpSession session = req.getSession(true);
                 session.setAttribute("user", user.get());
                 req.setAttribute("login", user.get().getLogin());
                 req.getRequestDispatcher("WEB-INF/jsp/welcome.jsp").forward(req, resp);
             }
         } else {
+            logger.debug("validation was failed");
             req.setAttribute("validtion", validation);
             req.getRequestDispatcher("WEB-INF/index.jsp").forward(req, resp);
         }

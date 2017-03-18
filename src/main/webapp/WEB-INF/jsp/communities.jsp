@@ -17,6 +17,7 @@
     <fmt:message var="communityWasNotRemoved" bundle="${communities}" key="communities.removed.wasnt"/>
     <fmt:message var="addCommunity" bundle="${communities}" key="communities.add.community"/>
     <fmt:message var="removeCommunity" bundle="${communities}" key="communities.remove.community"/>
+    <fmt:message var="createCommunity" bundle="${communities}" key="communities.create.community"/>
     <fmt:message var="communityTitle" bundle="${communities}" key="communities.title"/>
     <tags:menu title="${title}"/>
 </head>
@@ -86,6 +87,29 @@
                         <div class="form-group">
                             <input type="hidden" name="removeCommunity">
                             <input type="submit" class="btn btn-danger btn-send" value="${removeCommunity}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<form id="create-communtiy" action="communities" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="row" style="color:grey">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input id="createCommunity" name="communityToCreate" class="form-control"
+                                   placeholder="${communityTitle}" required="required">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input type="hidden" name="createCommunity">
+                            <input type="submit" class="btn btn-info btn-send" value="${createCommunity}">
                         </div>
                     </div>
                 </div>

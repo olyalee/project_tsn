@@ -159,33 +159,4 @@ public class ProfileServlet extends HttpServlet {
         req.getRequestDispatcher("/WEB-INF/jsp/profile.jsp").forward(req, resp);
     }
 
-//    boolean educationEdit(HttpServletRequest req, HttpSession session, User user){
-//
-//        if (req.getParameter("editInfo") != null && userService.getByLogin(login)!=user) {
-//            logger.debug("build updated user");
-//            User updatedUser = User.builder()
-//                    .login(user.getLogin())
-//                    .passwordHash(user.getPasswordHash())
-//                    .firstName(req.getParameter("firstName"))
-//                    .lastName(req.getParameter("lastName"))
-//                    .gender(userService.parseGender(req.getParameter("gender")))
-//                    .email(req.getParameter("email"))
-//                    .birthDate(Date.valueOf(userService.parseDate(req.getParameter("birthDate")).toLocalDate()))                               //(userService.parseDate("01.02.1978"))                      //
-//                    .country(req.getParameter("country"))
-//                    .city(req.getParameter("city"))
-//                    .science_field(req.getParameter("scienceField"))
-//                    .working_place(req.getParameter("workingPlace"))
-//                    .position(req.getParameter("position"))
-//                    .build();
-//
-//            if (userService.updateUser(updatedUser)) {
-//                logger.debug("setting updated user for session if update was successful");
-//                session.setAttribute("user", updatedUser);
-//                req.setAttribute("wasUpdated", true);
-//            } else {
-//                logger.debug("couldn't update user's info");
-//                req.setAttribute("wasUpdated", false);
-//            }
-//        }
-//    }
 }

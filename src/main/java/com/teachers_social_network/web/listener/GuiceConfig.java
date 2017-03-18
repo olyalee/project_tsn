@@ -55,12 +55,12 @@ public class GuiceConfig extends GuiceServletContextListener {
             serve("/").with(RootServlet.class);
             serve("/registration").with(RegistrationServlet.class);
             serve("/login").with(LoginServlet.class);
-            serve("/logout").with(LogoutServlet.class);
+            serve("/jsp/logout").with(LogoutServlet.class);
             serve("/locale").with(LocaleServlet.class);
-            serve("/profile").with(ProfileServlet.class);
-            serve("/colleagues").with(ColleaguesServlet.class);
-            serve("/communities").with(CommunitiesServlet.class);
-            serve("/messages").with(MessagesServlet.class);
+            serve("/jsp/profile").with(ProfileServlet.class);
+            serve("/jsp/colleagues").with(ColleaguesServlet.class);
+            serve("/jsp/communities").with(CommunitiesServlet.class);
+            serve("/jsp/messages").with(MessagesServlet.class);
             serve("/otherProfile").with(OtherProfileServlet.class);
         }
     }
@@ -70,6 +70,7 @@ public class GuiceConfig extends GuiceServletContextListener {
         protected void configureServlets() {
 
             filter("/*").through(CharsetFilter.class);
+//            filter("/jsp/*").through(LoggedInFilter.class);
         }
     }
 
