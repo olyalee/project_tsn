@@ -66,9 +66,7 @@ public class PgEducationDao implements EducationDao {
                     }
                 }
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return false;
@@ -97,9 +95,7 @@ public class PgEducationDao implements EducationDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query " + login, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return user_educations;
@@ -128,9 +124,7 @@ public class PgEducationDao implements EducationDao {
             }catch (SQLException e) {
                 logger.error("Couldn't execute SQL query " + id, e);
             }
-        }catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        }catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return Optional.empty();
@@ -156,9 +150,7 @@ public class PgEducationDao implements EducationDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - update education for " + education.getLogin(), e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return false;
@@ -175,9 +167,7 @@ public class PgEducationDao implements EducationDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - delete education for " + education.getLogin(), e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return false;

@@ -11,11 +11,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Created by Olya Lee on 03.02.2017.
+ * Locale Servlet
  */
 
 @Singleton
-//@WebServlet("/locale")
 public class LocaleServlet extends HttpServlet{
     final static Logger logger = Logger.getLogger(LocaleServlet.class);
 

@@ -1,16 +1,16 @@
 package com.teachers_social_network.web.filter;
 
+import javax.inject.Singleton;
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Created by Olya Lee on 08.01.2017.
+ * WebFilter which doesn't give access to any other page except login/registration page without authorization.
  */
-@WebFilter
+@Singleton
 public class LoggedInFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -25,8 +25,7 @@ public class LoggedInFilter implements Filter {
 
             final boolean isLoggedIn = session != null && session.getAttribute("user") != null;
 
-            final String loginPage = request.getContextPath()+"/";    //final String loginPage = request.getContextPath()+"/";
-//            final String loginPage = "/TSN";
+            final String loginPage = request.getContextPath()+"/";
 
             if(!isLoggedIn){
 

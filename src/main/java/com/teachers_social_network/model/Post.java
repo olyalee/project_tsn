@@ -6,7 +6,7 @@ import lombok.Value;
 import java.sql.Timestamp;
 
 /**
- * Created by Olya Lee on 08.02.2017.
+ * Post DTO
  */
 @Value
 @Builder

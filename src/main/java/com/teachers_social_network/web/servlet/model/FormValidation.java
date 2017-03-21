@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Olya Lee on 04.02.2017.
+ * Form Validation
  */
 
 public class FormValidation {

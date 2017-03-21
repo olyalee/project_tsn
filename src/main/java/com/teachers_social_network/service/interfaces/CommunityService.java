@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by Olya Lee on 10.03.2017.
+ * Community Service
+ * Help to make operations with community and its members
  */
 public interface CommunityService {
     /**add new community to the DB*/

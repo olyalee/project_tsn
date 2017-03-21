@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by Olya Lee on 11.02.2017.
+ * DAO for Education Entity
  */
 public interface EducationDao {
-    /**add new row to the DB*/
+    /**add new education to the DB*/
     boolean create(Education education);
 
     /**return all user's educations*/
@@ -21,5 +21,6 @@ public interface EducationDao {
     /**delete education from DB*/
     boolean delete(Education education);
 
+    /**get optional of education by education's id*/
     Optional<Education> getById(int id);
 }

@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by Olya Lee on 11.02.2017.
+ * DAO for Communities Entity
  */
 public interface CommunityDao {
+
     /**add new community to the DB*/
     boolean create(Community community);
 

@@ -18,7 +18,8 @@ import com.google.inject.Singleton;
 import javax.servlet.annotation.WebListener;
 
 /**
- *
+ * Configuration for Guice
+ * Contains info about implementations of interfaces, apps servlets and filters.
  */
 @WebListener
 public class GuiceConfig extends GuiceServletContextListener {
@@ -28,11 +29,10 @@ public class GuiceConfig extends GuiceServletContextListener {
 
         @Override
         protected void configure() {
-//            logger.info("binding interfaces with implementations");
 
             bind(ConnectionPool.class).to(PgConnectionPool.class).in(Singleton.class);
 
-            bind(UserDao.class).to(PgUserDao.class).in(Singleton.class); //bind(UserDao.class).to(DummyUserDao.class).in(Singleton.class); //
+            bind(UserDao.class).to(PgUserDao.class).in(Singleton.class);
             bind(EducationDao.class).to(PgEducationDao.class).in(Singleton.class);
             bind(CommunityDao.class).to(PgCommunityDao.class).in(Singleton.class);
             bind(ColleaguesDao.class).to(PgColleaguesDao.class).in(Singleton.class);
@@ -50,7 +50,6 @@ public class GuiceConfig extends GuiceServletContextListener {
     private static class ServletConfigModule extends ServletModule {
         @Override
         protected void configureServlets(){
-//            logger.info("configurations paths with servlets");
 
             serve("/").with(RootServlet.class);
             serve("/registration").with(RegistrationServlet.class);
@@ -61,7 +60,7 @@ public class GuiceConfig extends GuiceServletContextListener {
             serve("/jsp/colleagues").with(ColleaguesServlet.class);
             serve("/jsp/communities").with(CommunitiesServlet.class);
             serve("/jsp/messages").with(MessagesServlet.class);
-            serve("/otherProfile").with(OtherProfileServlet.class);
+            serve("/jsp/otherProfile").with(OtherProfileServlet.class);
         }
     }
 
@@ -70,13 +69,12 @@ public class GuiceConfig extends GuiceServletContextListener {
         protected void configureServlets() {
 
             filter("/*").through(CharsetFilter.class);
-//            filter("/jsp/*").through(LoggedInFilter.class);
+            filter("/jsp/*").through(LoggedInFilter.class);
         }
     }
 
     @Override
     protected Injector getInjector() {
-//        logger.info("create injector");
         return Guice.createInjector(new DependencyModule(), new ServletConfigModule(), new FilterConfigModule());
     }
 }

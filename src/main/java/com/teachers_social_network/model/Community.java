@@ -6,7 +6,7 @@ import lombok.Value;
 import java.util.List;
 
 /**
- * Created by Olya Lee on 07.02.2017.
+ * Community DTO
  */
 @Value
 @Builder

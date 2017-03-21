@@ -1,7 +1,5 @@
 package com.teachers_social_network.web.servlet;
 
-import com.teachers_social_network.model.Colleagues;
-import com.teachers_social_network.model.Education;
 import com.teachers_social_network.model.User;
 import com.teachers_social_network.service.interfaces.ColleagueService;
 import com.teachers_social_network.service.interfaces.SecurityService;
@@ -19,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by Olya Lee on 10.03.2017.
+ * Colleagues Servlet
  */
 @Singleton
 public class ColleaguesServlet extends HttpServlet {

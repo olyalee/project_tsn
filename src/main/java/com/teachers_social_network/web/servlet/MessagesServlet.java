@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * Created by Olya Lee on 11.03.2017.
+ * Message Servlet
  */
 @Singleton
 public class MessagesServlet extends HttpServlet {

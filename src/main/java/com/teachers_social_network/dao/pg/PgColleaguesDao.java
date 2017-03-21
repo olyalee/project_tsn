@@ -41,9 +41,7 @@ public class PgColleaguesDao implements ColleaguesDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query " + user_login + colleague_login, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection " + user_login + colleague_login, e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection " + user_login + colleague_login, e);
         }
         return false;
@@ -61,9 +59,7 @@ public class PgColleaguesDao implements ColleaguesDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query " + user_login + colleague_login, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection " + user_login + colleague_login, e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection " + user_login + colleague_login, e);
         }
         return false;
@@ -81,9 +77,7 @@ public class PgColleaguesDao implements ColleaguesDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query " + user_login + colleague_login, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection " + user_login + colleague_login, e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection " + user_login + colleague_login, e);
         }
         return false;
@@ -115,9 +109,7 @@ public class PgColleaguesDao implements ColleaguesDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query " + user_login, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection " + user_login, e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection " + user_login, e);
         }
         return colleagues;

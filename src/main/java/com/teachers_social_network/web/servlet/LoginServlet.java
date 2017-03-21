@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 /**
- * Created by Olya Lee on 08.01.2017.
+ * Login Servlet
  */
 @Singleton
 public class LoginServlet extends HttpServlet {
@@ -71,14 +71,6 @@ public class LoginServlet extends HttpServlet {
             req.setAttribute("validtion", validation);
             req.getRequestDispatcher("WEB-INF/index.jsp").forward(req, resp);
         }
-
-//       if(!validation.isValid()){
-//           req.setAttribute("validtion",validation);
-//           req.getRequestDispatcher("WEB-INF/index.jsp").forward(req,resp);
-//           return;
-//       }
-
-//        resp.sendRedirect(req.getContextPath());
     }
 
     static FormValidation validate(Credentials credentials) {

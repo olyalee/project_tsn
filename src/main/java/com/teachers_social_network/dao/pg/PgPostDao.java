@@ -1,6 +1,5 @@
 package com.teachers_social_network.dao.pg;
 
-import com.google.inject.Singleton;
 import com.teachers_social_network.dao.interfaces.ConnectionPool;
 import com.teachers_social_network.dao.interfaces.PostDao;
 import com.teachers_social_network.model.Community;
@@ -64,9 +63,7 @@ public class PgPostDao implements PostDao {
                     }
                 }
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return false;
@@ -92,9 +89,7 @@ public class PgPostDao implements PostDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - get posts for community - " + community.getTitle(), e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return community_posts;
@@ -120,9 +115,7 @@ public class PgPostDao implements PostDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - get posts by " + login, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return community_posts;
@@ -149,9 +142,7 @@ public class PgPostDao implements PostDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - get posts by user " + login + " for community " + community.getTitle(), e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return community_posts;
@@ -172,9 +163,7 @@ public class PgPostDao implements PostDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - update post " + post.getText(), e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return false;
@@ -191,9 +180,7 @@ public class PgPostDao implements PostDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - delete post " + post.getText(), e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         if (i > 0) return true;

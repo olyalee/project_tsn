@@ -1,7 +1,8 @@
 package com.teachers_social_network.service.interfaces;
 
 /**
- * Created by Olya Lee on 04.02.2017.
+ * Security Service
+ * Password hashing and validation
  */
 public interface SecurityService {
     String encrypt(String password);

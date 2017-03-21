@@ -5,7 +5,8 @@ import com.teachers_social_network.model.Message;
 import java.util.List;
 
 /**
- * Created by Olya Lee on 11.03.2017.
+ * Message Service
+ * Help to create & delete messages and to get them by sender & recipient
  */
 
 public interface MessageService {

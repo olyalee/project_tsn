@@ -7,7 +7,7 @@ import lombok.Value;
 import java.sql.Date;
 
 /**
- * Created by Olya Lee on 08.01.2017.
+ * User DTO
  */
 @Value
 @Builder
@@ -24,5 +24,4 @@ public class User {
     String science_field;
     String working_place;
     String position;
-
 }

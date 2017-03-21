@@ -50,9 +50,7 @@ public class PgUserDao implements UserDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - get user " + login, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
 
@@ -81,9 +79,7 @@ public class PgUserDao implements UserDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - create user " + user.getLogin(), e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return false;
@@ -111,9 +107,7 @@ public class PgUserDao implements UserDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - update user " + user.getLogin(), e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return false;
@@ -130,9 +124,7 @@ public class PgUserDao implements UserDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - delete user " + login, e);
             }
-        }catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        }catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         if (i > 0) return true;

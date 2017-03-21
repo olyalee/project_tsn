@@ -25,17 +25,16 @@ import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 /**
- *
+ * Registration Servlet
  */
 @Singleton
-//@WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
     private final UserService userService;
 
     final static Logger logger = Logger.getLogger(RegistrationServlet.class);
 
-    public static final String LOGIN = "newLogin";    // login
-    public static final String PASSWORD = "newPassword";  //password
+    public static final String LOGIN = "newLogin";
+    public static final String PASSWORD = "newPassword";
 
     @Inject
     public RegistrationServlet(UserService userService) {

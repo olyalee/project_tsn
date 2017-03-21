@@ -11,7 +11,8 @@ import java.util.Optional;
 
 
 /**
- * Created by Olya Lee on 04.02.2017.
+ * User Service
+ * Help to make operations related to user, user profile and education
  */
 public interface UserService {
     Optional<User> addUser(User user);
@@ -24,9 +25,8 @@ public interface UserService {
     List<Education> getEducationByLogin(String login);
     boolean updateEducation(Education education);
     boolean addEducation(Education education);
+    boolean deleteEducation(int id);
 
     Date parseDate(String stringDate);
     Gender parseGender(String stringGender);
-
-    boolean deleteEducation(int id);
 }

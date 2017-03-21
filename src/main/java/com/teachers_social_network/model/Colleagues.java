@@ -3,7 +3,7 @@ package com.teachers_social_network.model;
 import java.util.List;
 
 /**
- * Created by Olya Lee on 11.02.2017.
+ * Colleague DTO
  */
 public class Colleagues {
     String login;

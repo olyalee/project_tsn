@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Value;
 
 /**
- * Created by Olya Lee on 04.02.2017.
+ * Field Validation
  */
 
 @Value

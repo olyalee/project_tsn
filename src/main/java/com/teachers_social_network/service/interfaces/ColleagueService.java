@@ -5,7 +5,8 @@ import com.teachers_social_network.model.User;
 import java.util.List;
 
 /**
- * Created by Olya Lee on 10.03.2017.
+ * Colleague Service
+ * Help to add and remove colleague for user, to check is users are colleague and to get lists of user's colleagues
  */
 public interface ColleagueService {
     boolean addColleague(String user_login, String colleague_login);

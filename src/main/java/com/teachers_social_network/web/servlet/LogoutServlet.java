@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by Olya Lee on 08.03.2017.
+ * Logout Servlet
  */
 @Singleton
 public class LogoutServlet extends HttpServlet {

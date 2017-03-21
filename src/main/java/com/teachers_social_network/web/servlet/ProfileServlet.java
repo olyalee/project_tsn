@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
- * Created by Olya Lee on 08.03.2017.
+ * Profile Servlet
  */
 
 @Singleton

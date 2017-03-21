@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by Olya Lee on 15.03.2017.
+ * Other user profile Servlet
  */
 @Singleton
 public class OtherProfileServlet extends HttpServlet {

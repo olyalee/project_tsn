@@ -1,6 +1,5 @@
 package com.teachers_social_network.dao.pg;
 
-import com.google.inject.Singleton;
 import com.teachers_social_network.dao.interfaces.ConnectionPool;
 import com.teachers_social_network.dao.interfaces.MessageDao;
 import com.teachers_social_network.model.Message;
@@ -63,9 +62,7 @@ public class PgMessageDao implements MessageDao {
                     }
                 }
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return false;
@@ -87,9 +84,7 @@ public class PgMessageDao implements MessageDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - get messages to " + login, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return messagesToUser;
@@ -110,9 +105,7 @@ public class PgMessageDao implements MessageDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - get messages from " + login, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return messagesFromUser;
@@ -134,9 +127,7 @@ public class PgMessageDao implements MessageDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - get messages to " + to_user + " from " + from_user, e);
             }
-        } catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        } catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         return messages;
@@ -153,9 +144,7 @@ public class PgMessageDao implements MessageDao {
             } catch (SQLException e) {
                 logger.error("Couldn't execute SQL query - delete " + message.getText(), e);
             }
-        }catch (InterruptedException e) {
-            logger.error("Couldn't get connection ", e);
-        } catch (SQLException e) {
+        }catch (InterruptedException | SQLException e) {
             logger.error("Couldn't get connection ", e);
         }
         if (i > 0) return true;

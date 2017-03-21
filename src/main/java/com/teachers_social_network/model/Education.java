@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Value;
 
 /**
- * Created by Olya Lee on 08.01.2017.
+ * Education DTO
  */
 
 @Value

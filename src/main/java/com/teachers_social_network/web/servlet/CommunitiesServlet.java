@@ -16,6 +16,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Communities Servlet
+ */
+
 @Singleton
 public class CommunitiesServlet extends HttpServlet {
     final static Logger logger = Logger.getLogger(CommunitiesServlet.class);

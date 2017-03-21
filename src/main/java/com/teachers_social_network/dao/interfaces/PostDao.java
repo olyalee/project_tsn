@@ -6,10 +6,10 @@ import com.teachers_social_network.model.Post;
 import java.util.List;
 
 /**
- * Created by Olya Lee on 11.02.2017.
+ * DAO for Posts Entity
  */
 public interface PostDao {
-    /**add new row to the DB's*/
+    /**add new post to the DB*/
     boolean create(Post post);
 
     /**return all post for community*/
@@ -24,6 +24,6 @@ public interface PostDao {
     /**update post*/
     boolean update(Post post);
 
-    /**delete message from DB*/
+    /**delete post from DB*/
     boolean delete(Post post);
 }

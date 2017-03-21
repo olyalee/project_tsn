@@ -5,13 +5,13 @@ import com.teachers_social_network.model.User;
 import java.util.Optional;
 
 /**
- * Created by Olya Lee on 04.02.2017.
+ * DAO for Users Entity
  */
 public interface UserDao {
     /**return user if he exist in the DB*/
     Optional<User> getByLogin(String login);
 
-    /**add new row to the DB's table which represents object*/
+    /**add new user to the DB*/
     boolean create(User user);
 
     /**update user's data in DB*/

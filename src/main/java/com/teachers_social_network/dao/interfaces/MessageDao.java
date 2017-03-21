@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by Olya Lee on 08.02.2017.
+ * DAO for Messages Entity
  */
 public interface MessageDao {
-    /**add new row to the DB's*/
+    /**add new message to the DB*/
     boolean create(Message message);
 
     /**return all messages for user*/
