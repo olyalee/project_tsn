@@ -52,32 +52,48 @@ public class CommunitiesServlet extends HttpServlet {
 
         if (req.getParameter("addCommunity") != null) {
             String communityTitle = req.getParameter("communityToAdd");
-            Community community = communityService.getCommunity(communityTitle).get();
-            if (!communityService.isUserInCommunity(community, login)) {
-                communityService.addMember(community,login);
-                req.setAttribute("wasAdded",true);
-            }else{
+            Community community;
+            if (communityService.getCommunity(communityTitle).isPresent()) {
+                community = communityService.getCommunity(communityTitle).get();
+                if (!communityService.isUserInCommunity(community, login)) {
+                    if (communityService.addMember(community, login)) {
+                        req.setAttribute("wasAdded", true);
+                    } else {
+                        req.setAttribute("wasAdded", false);
+                    }
+                } else {
+                    req.setAttribute("wasAdded", false);
+                }
+            } else {
                 req.setAttribute("wasAdded", false);
             }
         }
 
         if (req.getParameter("removeCommunity") != null) {
             String communityTitle = req.getParameter("communityToRemove");
-            Community community = communityService.getCommunity(communityTitle).get();
-            if(communityService.isUserInCommunity(community,login)){
-                communityService.removeMember(community,login);
-                req.setAttribute("wasRemoved",true);
-            }else{
+            Community community;
+            if (communityService.getCommunity((communityTitle)).isPresent()) {
+                community = communityService.getCommunity(communityTitle).get();
+                if (communityService.isUserInCommunity(community, login)) {
+                    if (communityService.removeMember(community, login)) {
+                        req.setAttribute("wasRemoved", true);
+                    } else {
+                        req.setAttribute("wasRemoved", false);
+                    }
+                } else {
+                    req.setAttribute("wasRemoved", false);
+                }
+            } else {
                 req.setAttribute("wasRemoved", false);
             }
         }
 
-        if(req.getParameter("createCommunity")!=null){
+        if (req.getParameter("createCommunity") != null) {
             String communityTitle = req.getParameter("communityToCreate");
             Community newCommunity = Community.builder().id(1).title(communityTitle).build();
-            if(communityService.create(newCommunity)){
-                req.setAttribute("wasCreated",true);
-            }else{
+            if (communityService.create(newCommunity)) {
+                req.setAttribute("wasCreated", true);
+            } else {
                 req.setAttribute("wasCreated", false);
             }
         }

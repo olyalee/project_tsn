@@ -6,7 +6,6 @@
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <fmt:setLocale value="${sessionScope.locale}"/>
     <fmt:setBundle basename="i18n.root" var="root"/>
-    <fmt:setBundle basename="i18n.autorization" var="auto"/>
     <fmt:setBundle basename="i18n.profile" var="profile"/>
     <fmt:setBundle basename="i18n.messages" var="messages"/>
     <fmt:message var="title" bundle="${root}" key="root.messages"/>

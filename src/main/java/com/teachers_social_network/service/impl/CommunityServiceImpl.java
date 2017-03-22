@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by Olya Lee on 10.03.2017.
+ * Community Service implementation
  */
 public class CommunityServiceImpl implements CommunityService {
     private final CommunityDao communityDao;

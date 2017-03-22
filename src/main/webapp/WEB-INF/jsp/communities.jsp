@@ -6,8 +6,6 @@
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <fmt:setLocale value="${sessionScope.locale}"/>
     <fmt:setBundle basename="i18n.root" var="root"/>
-    <fmt:setBundle basename="i18n.autorization" var="auto"/>
-    <fmt:setBundle basename="i18n.profile" var="profile"/>
     <fmt:setBundle basename="i18n.communities" var="communities"/>
     <fmt:message var="title" bundle="${root}" key="root.communities"/>
     <fmt:message var="myCommunities" bundle="${communities}" key="communities.my.communities"/>
@@ -15,6 +13,8 @@
     <fmt:message var="communityWasNotAdded" bundle="${communities}" key="communities.added.wasnt"/>
     <fmt:message var="communityWasRemoved" bundle="${communities}" key="communities.removed.was"/>
     <fmt:message var="communityWasNotRemoved" bundle="${communities}" key="communities.removed.wasnt"/>
+    <fmt:message var="communityWasCreated" bundle="${communities}" key="communities.created.was"/>
+    <fmt:message var="communityWasNotCreated" bundle="${communities}" key="commmunities.created.wasnt"/>
     <fmt:message var="addCommunity" bundle="${communities}" key="communities.add.community"/>
     <fmt:message var="removeCommunity" bundle="${communities}" key="communities.remove.community"/>
     <fmt:message var="createCommunity" bundle="${communities}" key="communities.create.community"/>

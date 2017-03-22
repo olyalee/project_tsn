@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * Created by Olya Lee on 11.03.2017.
+ * Message Service implementation
  */
 public class MessageServiceImpl implements MessageService {
     private final MessageDao messageDao;

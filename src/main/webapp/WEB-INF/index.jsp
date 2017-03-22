@@ -9,7 +9,6 @@
     <fmt:setBundle basename="i18n.root" var="root"/>
     <fmt:setBundle basename="i18n.autorization" var="auto"/>
     <fmt:message var="title" bundle="${root}" key="root.title"/>
-    <jsp:useBean id="validation" class="com.teachers_social_network.web.servlet.model.FormValidation" scope="request"/>
     <tags:menu title="${title}"/>
 </head>
 <body>
@@ -18,46 +17,19 @@
 </div>
 <c:if test="${sessionScope.user==null}">
     <div class="container">
-        <c:if test="${validation.errors.INVALID_CREDENTIALS}">
-            <div class="alert alert-danger"><fmt:message bundle="${auto}" key="auto.error.login"/></div>
-        </c:if>
-    </div>
-    <div class="container">
         <div class="row">
             <div class="col-md-6 well"><h3><fmt:message bundle="${auto}" key="auto.signin"/></h3>
                 <form id="loginform" class="form-inline" role="form" action="login" method="post">
-                    <div
-                            <c:choose>
-                                <c:when test="${not empty validation.fields.login}">
-                                    class="form-group has-error"
-                                </c:when>
-                                <c:otherwise>
-                                    class="form-group"
-                                </c:otherwise>
-                            </c:choose>
-                    >
+                    <div class="form-group">
                         <label class="sr-only"><fmt:message bundle="${auto}" key="auto.login"/></label>
                         <input type="text" id="inputLogin" name="inputLogin" class="form-control"
                                placeholder="<fmt:message bundle="${auto}" key="auto.login"/>" required
                                autofocus/>
-                        <c:if test="${validation.fields.login.emptyField}">
-                            <span class="help-block"><fmt:message bundle="${auto}" key="auto.emptyLogin"/></span>
-                        </c:if>
                     </div>
-                    <div  <c:choose>
-                        <c:when test="${not empty validation.fields.password}">
-                            class="form-group has-error"
-                        </c:when>
-                        <c:otherwise>
-                            class="form-group">
-                        </c:otherwise>
-                    </c:choose>
+                    <div class="form-group">
                     <label class="sr-only"><fmt:message bundle="${auto}" key="auto.password"/></label>
                     <input type="password" id="inputPassword" name="inputPassword" class="form-control"
                            placeholder="<fmt:message bundle="${auto}" key="auto.password"/>" required>
-                        <c:if test="${validation.fields.password.emptyField}">
-                            <span class="help-block"><fmt:message bundle="${auto}" key="auto.emptyPassword"/></span>
-                        </c:if>
                     </div>
                     <button type="submit" class="btn btn-success"><fmt:message bundle="${auto}"
                                                                                key="auto.signin"/></button>
@@ -68,7 +40,7 @@
             <div class="col-md-6 well"><h3><fmt:message bundle="${auto}" key="auto.register"/></h3>
                 <form id="regform" class="form-inline" role="form" action="registration" method="post">
                     <div class="form-group">
-                            <%--<label class="sr-only"><fmt:message bundle="${auto}" key="auto.login"/></label>--%>
+                            <label class="sr-only"><fmt:message bundle="${auto}" key="auto.login"/></label>
                         <input type="text" id="newLogin" name="newLogin" class="form-control"
                                placeholder="<fmt:message bundle="${auto}" key="auto.login"/>" required autofocus/>
                     </div>

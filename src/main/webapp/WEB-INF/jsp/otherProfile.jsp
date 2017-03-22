@@ -5,8 +5,6 @@
     <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <fmt:setLocale value="${sessionScope.locale}"/>
-    <fmt:setBundle basename="i18n.root" var="root"/>
-    <fmt:setBundle basename="i18n.autorization" var="auto"/>
     <fmt:setBundle basename="i18n.profile" var="profile"/>
     <fmt:message var="title" bundle="${profile}" key="profile.title"/>
     <fmt:message var="firstName" bundle="${profile}" key="profile.first.name"/>
@@ -36,8 +34,6 @@
     <tags:menu title="${title}"/>
 </head>
 <body>
-<%--<c:set var="colleague" scope="request" value="colleague"/>--%>
-<%--<c:set var="colleagueEducationList" scope="request" value="colleagueEducationList"/>--%>
 <div class="container">
     <div class="row">
         <div class="col-md-10">

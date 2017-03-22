@@ -7,10 +7,7 @@
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <fmt:setLocale value="${sessionScope.locale}"/>
     <fmt:setBundle basename="i18n.root" var="root"/>
-    <fmt:setBundle basename="i18n.autorization" var="auto"/>
-    <fmt:setBundle basename="i18n.login" var="login"/>
     <fmt:message var="title" bundle="${root}" key="root.error"/>
-    <jsp:useBean id="validation" class="com.teachers_social_network.web.servlet.model.FormValidation" scope="request"/>
     <tags:menu title="${title}"/>
 </head>
 <body>

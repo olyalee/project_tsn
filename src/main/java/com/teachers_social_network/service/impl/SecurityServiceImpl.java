@@ -8,7 +8,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by Olya Lee on 04.02.2017.
+ * Security Service implementation
  */
 public class SecurityServiceImpl implements SecurityService {
     final static Logger logger = Logger.getLogger(SecurityServiceImpl.class);

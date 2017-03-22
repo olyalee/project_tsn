@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by Olya Lee on 04.02.2017.
+ * User Service implementation
  */
 public class UserServiceImpl implements UserService {
     private final UserDao userDao;
@@ -32,8 +32,6 @@ public class UserServiceImpl implements UserService {
     @Inject
     public UserServiceImpl(UserDao userDao, EducationDao educationDao, SecurityService securityService) {
 
-//        logger.info("constract UserServiceImpl");
-
         this.userDao = userDao;
         this.educationDao = educationDao;
         this.securityService = securityService;
@@ -43,7 +41,7 @@ public class UserServiceImpl implements UserService {
     public Optional<User> addUser(User user) {
         logger.info("try to add new user");
         //add hash for pass
-        User userWishHash = User.builder()
+        User userWithHash = User.builder()
                 .passwordHash(securityService.encrypt(user.getPasswordHash()))
                 .login(user.getLogin())
                 .firstName(user.getFirstName())
@@ -56,7 +54,7 @@ public class UserServiceImpl implements UserService {
                 .science_field(user.getScience_field())
                 .working_place(user.getWorking_place())
                 .position(user.getPosition()).build();
-        if(userDao.create(userWishHash)){
+        if(userDao.create(userWithHash)){
          return Optional.of(user);
         }
         return Optional.empty();
@@ -119,7 +117,7 @@ public class UserServiceImpl implements UserService {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         Date birthDate;
         try {
-            birthDate = new Date((dateFormat.parse(stringDate)).getTime()); //(Date) dateFormat.parse((req.getParameter("newBirthDate")));
+            birthDate = new Date((dateFormat.parse(stringDate)).getTime());
         } catch (ParseException e) {
             logger.error("couldn't parse birthdate like dd.MM.yyyy");
             dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -128,7 +126,12 @@ public class UserServiceImpl implements UserService {
                 birthDate = new Date((dateFormat.parse(stringDate)).getTime());
             } catch (ParseException e1) {
                 logger.error("couldn't parse birthdate like yyyy-MM-dd");
-                birthDate = null;
+                try {
+                    birthDate = new Date((dateFormat.parse("1900-01-01")).getTime());
+                } catch (ParseException e2) {
+                    logger.error("couldn't parse any date");
+                    birthDate = null;
+                }
             }
         }
         return birthDate;

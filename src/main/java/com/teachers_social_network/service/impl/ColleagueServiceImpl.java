@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * Created by Olya Lee on 10.03.2017.
+ * Colleague Service implementation
  */
 public class ColleagueServiceImpl implements ColleagueService {
     private final ColleaguesDao colleaguesDao;

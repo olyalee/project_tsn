@@ -1,27 +1,18 @@
 package com.teachers_social_network.web.servlet;
 
 import com.google.inject.Inject;
-
-import javax.inject.Singleton;
-
 import com.teachers_social_network.model.Credentials;
-import com.teachers_social_network.model.Gender;
 import com.teachers_social_network.model.User;
 import com.teachers_social_network.service.interfaces.UserService;
-import com.teachers_social_network.web.servlet.model.FieldValidation;
-import com.teachers_social_network.web.servlet.model.FormValidation;
 import org.apache.log4j.Logger;
 
-
+import javax.inject.Singleton;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 /**
@@ -67,9 +58,6 @@ public class RegistrationServlet extends HttpServlet {
                 .working_place(req.getParameter("newPlace"))
                 .position(req.getParameter("newPosition")).build();
 
-        final FormValidation validation = validate(credentials);
-
-        if (validation.isValid()) {
             final Optional<User> user = userService.getByCredentials(credentials);
 
             if (!user.isPresent()) {
@@ -78,7 +66,7 @@ public class RegistrationServlet extends HttpServlet {
                 if (addedUser.isPresent()) {
                     logger.info("User was added");
                     final HttpSession session = req.getSession(true);
-                    session.setAttribute("user", newUser); //session.setAttribute("user",user.get());
+                    session.setAttribute("user", newUser);
                 } else {
                     //couldn't add new user
                     logger.info("couldn't add new user");
@@ -86,31 +74,8 @@ public class RegistrationServlet extends HttpServlet {
             } else {
                 //user with such login is already exist
                 logger.info("couldn't add new user - user with such login is already exist");
-                validation.getErrors().put("INVALID_CREDENTIALS", true);
             }
-        }
-
-        if (!validation.isValid()) {
-            req.setAttribute("validtion", validation);
-            req.getRequestDispatcher("WEB-INF/index.jsp").forward(req, resp);
-            return;
-        }
 
         resp.sendRedirect(req.getContextPath());
-    }
-
-    static FormValidation validate(Credentials credentials) {
-        final FormValidation validation = new FormValidation();
-
-        if (credentials.getLogin() == null || credentials.getLogin().isEmpty()) {
-            validation.getFields().put(LOGIN, FieldValidation.builder().isEmptyField(true).build());
-        }
-
-        if (credentials.getPassword() == null || credentials.getPassword().isEmpty()) {
-            validation.getFields().put(PASSWORD, FieldValidation.builder().isEmptyField(true).build());
-        }
-
-
-        return validation;
     }
 }
